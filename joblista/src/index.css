@@ -1,9 +1,13 @@
+/*fonts*/
+@import url('https://fonts.googleapis.com/css2?family=cabin&family-Roboto+Condensed:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 
 /* ============= GLOBAL CSS =============== */
+
 
 *,
 ::after,
@@ -13,8 +17,6 @@
   box-sizing: border-box;
 }
 
-/*fonts*/
-@import url('https://fonts.googleapis.com/css2?family=cabin&family-Roboto+Condensed:wght@400;700&display=swap');
 
 html {
   font-size: 100%;
