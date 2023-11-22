@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 
 
 
@@ -5,8 +7,8 @@
 
 const NavLinks = () => {
   return (<>
-    <li className=""><a href="">NavLinks</a></li>
-    <li className=""><a href="">NavLinks</a></li>
+    <li className=""><Link to="/register">Register</Link></li>
+    <li className=""><Link to="">NavLinks</Link></li>
     </>
   )
 }

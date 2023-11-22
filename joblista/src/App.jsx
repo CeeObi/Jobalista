@@ -16,7 +16,7 @@ const router = new createBrowserRouter([
   },
   {
     path:"/dashboard",
-    element: <Dashboard />,
+    element: <Error />,//<Dashboard />,
     errorElement: <Error />,
   },
 ])
