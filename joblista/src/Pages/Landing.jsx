@@ -23,7 +23,7 @@ const Landing = () => {
                 <p className='my-8 mx-10 lg:w-2/3 lg:mx-0'>
                   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, cum mollitia! Ipsum placeat, deleniti ullam iusto similique distinctio molestias ea sed alias corrupti porro rerum voluptatum ipsam, neque vitae a?
                 </p>
-                <Link to="/register"><button className='btn btn-primary my-4 mx-10 lg:mx-0'>Login/Register</button></Link>
+                <Link to="/login"><button className='btn btn-primary my-4 mx-10 lg:mx-0'>Login/Register</button></Link>
               </div>
             </div>
         </div>

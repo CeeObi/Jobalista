@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {Dashboard, Error, Landing, Register} from './Pages';
+import {Dashboard, Error, Landing, Login, Register} from './Pages';
 import {RouterProvider, createBrowserRouter} from "react-router-dom";
 
 
@@ -16,7 +16,12 @@ const router = new createBrowserRouter([
   },
   {
     path:"/dashboard",
-    element: <Error />,//<Dashboard />,
+    element: <Dashboard />,
+    errorElement: <Error />,
+  },
+  {
+    path:"/login",
+    element: <Login />,
     errorElement: <Error />,
   },
 ])

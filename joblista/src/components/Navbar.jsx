@@ -18,8 +18,10 @@ const Navbar = () => {
     <nav className="bg-base-200">
         <div className="navbar align-element">
             {/*TITLE */}
-            <div className="navbar-start">                
-                <Logo />
+            <div className="navbar-start">       
+                <div className='mx-2'>
+                    <Logo />
+                </div>         
             </div>            
             <div className="navbar-center hidden lg:flex">
                 <ul className='menu menu-horizontal'>
