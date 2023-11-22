@@ -1,13 +1,12 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import Landing from './Pages/Landing';
-
 
 
 
 
 function App() {
   return (
-    <div>
+    <div>      
       <Landing />
     </div>
   )
