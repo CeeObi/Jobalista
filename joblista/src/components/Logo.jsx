@@ -1,8 +1,7 @@
 import logo from '../assets/images/logo.png'
-import {NavLink} from 'react-router-dom';
+// import {NavLink} from 'react-router-dom';
 
 const Logo = () => {
-
   return (
     // <NavLink to='/' className="hidden lg:flex btn btn-primary text-3xl items-center">
             <div className='flex text-center items-center'>

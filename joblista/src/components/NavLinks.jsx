@@ -4,8 +4,10 @@
 
 
 const NavLinks = () => {
-  return (
-    <div className="">NavLinks</div>
+  return (<>
+    <li className=""><a href="">NavLinks</a></li>
+    <li className=""><a href="">NavLinks</a></li>
+    </>
   )
 }
 
