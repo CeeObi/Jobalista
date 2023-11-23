@@ -1,11 +1,11 @@
 
 
-const FormInput = ({label, name, type, defaultValue, size}) => {
+const FormInput = ({label, name, type, value, size, changeVal}) => {
     return <div className="form-control">
-    <label className="label">
+    <label className=" label" htmlFor={name}>
       <span className="label-text capitalize">{label}</span>
     </label>
-    <input name={name} type={type} defaultValue={defaultValue} className={`input input-bordered ${size}`} />
+    <input onChange={changeVal} name={name} type={type} value={value} className={`input input-bordered ${size}`} />
   </div>
 }
 
