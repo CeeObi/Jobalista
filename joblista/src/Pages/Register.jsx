@@ -2,6 +2,9 @@ import { Form, Link, redirect, useNavigate } from "react-router-dom";
 import { FormInput, Logo, SubmitBtn } from "../components";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import {registerUser } from "../features/user/userSlice";
+
 
 
 
@@ -15,22 +18,28 @@ const initialState = {
 
 
 const Register = () => {
-  // const navigate = useNavigate()
+  const dispatch = useDispatch();
   const [values,setValues] = useState(initialState);
+  const {user,isLoading} = useSelector((store) => store.user);
+
   const handleChange = (event) => {
     setValues({...values, [event.target.name] : event.target.value })
-  }  
-  const onSubmit = () => {
-    const {name,email,password} = values
-    if (!name || !email || !password){      
-      toast.error("please fill all field")      
-    }    
-  }
+  } 
 
+  const handleSubmit = () => {
+    const {name,email,password} = values;
+    if (!name || !email || !password){      
+      toast.error("please fill all fields")      
+      return;
+    }   
+    dispatch(registerUser({name,email,password}));
+
+
+  }
 
   return (
     <section className="h-screen grid place-items-center">
-        <Form method="POST" onSubmit={onSubmit} className="card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-6 border-t-4 border-blue-400">
+        <Form method="POST" onSubmit={handleSubmit} className="card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-6 border-t-4 border-blue-400">
             <div className="self-center"><Logo /></div>
             <h4 className="text-center font-bold text-3xl">Register</h4>
             <div>            

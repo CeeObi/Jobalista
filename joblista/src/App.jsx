@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import {Dashboard, Error, Landing, Login, Register} from './Pages';
 import {RouterProvider, createBrowserRouter} from "react-router-dom";
+import { Provider } from 'react-redux';
+import { store } from './Store';
+
 
 
 const router = new createBrowserRouter([
@@ -30,7 +33,9 @@ const router = new createBrowserRouter([
 
 function App() {
   return (
-    <RouterProvider router={router} />
+    <Provider store={store} >
+      <RouterProvider router={router} />
+    </Provider>
   )
 }
 
