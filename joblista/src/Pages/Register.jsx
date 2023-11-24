@@ -32,14 +32,14 @@ const Register = () => {
       toast.error("please fill all fields")      
       return;
     }   
-    dispatch(registerUser({name,email,password}));
-
-
+    dispatch(registerUser({name:name,email:email,password:password}));
+    setValues(initialState)
+    return
   }
 
   return (
     <section className="h-screen grid place-items-center">
-        <Form method="POST" onSubmit={handleSubmit} className="card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-6 border-t-4 border-blue-400">
+        <Form onSubmit={handleSubmit} className="card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-6 border-t-4 border-blue-400">
             <div className="self-center"><Logo /></div>
             <h4 className="text-center font-bold text-3xl">Register</h4>
             <div>            
@@ -48,7 +48,7 @@ const Register = () => {
                 <FormInput type="password" name="password" label="password"  changeVal={handleChange} value={values.password}/>
             </div>            
             <div className="mt-4">
-                <SubmitBtn text="Register"/>            
+                <SubmitBtn text="Register" isLoading={isLoading}/>            
             </div>            
             <p className="text-center">
                 Already a member? <Link to="/login" className="ml-2 link link-hover link-primary capitalize">login</Link>
