@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import React from 'react'
+import customFetch from '../../utils/axios';
 
 
 
@@ -9,7 +9,10 @@ const initialState = {
 }
 
 
-const registerUser = createAsyncThunk("regUser",async(user,thunkAPI)=>{console.log(`Registered User: ${user}`)})
+const registerUser = createAsyncThunk("regUser", async(user,thunkAPI)=>{
+    console.log(`Registered User: ${user}`)
+})
+
 const loginUser = createAsyncThunk("logUser",async(user,thunkAPI)=>{console.log(`Loggedin User: ${user}`)})
 
 
