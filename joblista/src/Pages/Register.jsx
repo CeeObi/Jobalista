@@ -1,6 +1,6 @@
 import { Form, Link, redirect, useNavigate } from "react-router-dom";
 import { FormInput, Logo, SubmitBtn } from "../components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import {registerUser } from "../features/user/userSlice";
@@ -10,17 +10,18 @@ import {registerUser } from "../features/user/userSlice";
 
 
 const initialState = {
-  name:'Dims',
-  email:'james',
-  password:'',
+  name:'Zeke',
+  email:'zeke@gmail.com',
+  password:'zeke589',
   isMember: true,
 }
 
 
 const Register = () => {
   const dispatch = useDispatch();
+  const navigate=useNavigate();
   const [values,setValues] = useState(initialState);
-  const {user,isLoading} = useSelector((store) => store.user);
+  const {user,isLoading} = useSelector((state) => state.userStore);
 
   const handleChange = (event) => {
     setValues({...values, [event.target.name] : event.target.value })
@@ -32,10 +33,19 @@ const Register = () => {
       toast.error("please fill all fields")      
       return;
     }   
-    dispatch(registerUser({name:name,email:email,password:password}));
-    setValues(initialState)
+    dispatch(registerUser({name,email,password}));        
     return
   }
+
+  useEffect( () => {
+      if (user){
+      setTimeout(() => {
+        navigate("/dashboard")
+      }, 1000);
+      }
+    },[user]
+  )
+
 
   return (
     <section className="h-screen grid place-items-center">

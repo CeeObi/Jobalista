@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {FormInput, Logo, SubmitBtn} from "../components"
 import { Form, Link, redirect, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,18 +6,21 @@ import { loginUser } from "../features/user/userSlice";
 
 
 const initialState = {
-    name:'Dims',
-    email:'james',
-    password:'',
+    name:'Zeke',
+    email:'zeke@gmail.com',
+    password:'zeke589',
     isMember: true,
   }
 
 
 
+
+
 const Login = () => {  
-    const dispatch = useDispatch()  
+    const dispatch = useDispatch() 
+    const navigate = useNavigate() ;
     const [values,setValues] = useState(initialState);
-    const {user,isLoading} = useSelector((store) => store.user);
+    const {user,isLoading} = useSelector((state) => state.userStore);
 
     const handleChange = (event) => {
         setValues({...values, [event.target.name] : event.target.value })
@@ -29,13 +32,20 @@ const Login = () => {
             toast.error("please fill all fields")      
             return
         }    
-        dispatch(loginUser({email,password}));
-
+        dispatch(loginUser({email,password}));        
     }
+
+    useEffect(() => {
+        if(user){
+            setTimeout(() => {
+                navigate("/dashboard") 
+            }, 1000);
+        }
+    },[user])
 
 
     return <section className="h-screen grid place-items-center">
-    <Form onSubmit={handleSubmit} method="POST" className="card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-6 border-t-4 border-blue-400">
+    <Form onSubmit={handleSubmit} className="card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-6 border-t-4 border-blue-400">
         <div className="self-center"><Logo /></div>
         <h4 className="text-center font-bold text-3xl">Login</h4>
         <div>
@@ -44,7 +54,7 @@ const Login = () => {
         </div>
         
         <div className="mt-4">
-            <SubmitBtn text="Login"/>            
+            <SubmitBtn text="Login" isLoading={isLoading}/>            
         </div>
         <p className="text-center">
             Not a member yet? <Link to="/register" className="ml-2 link link-hover link-primary capitalize"> register</Link>
