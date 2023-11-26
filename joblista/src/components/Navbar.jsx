@@ -15,7 +15,7 @@ const Navbar = () => {
     //     dispatch(toggleTheme())        
     
     return (
-    <nav className="bg-base-200">
+    <nav className="bg-base-200 ">
         <div className="navbar align-element">
             {/*TITLE */}
             <div className="navbar-start">       
