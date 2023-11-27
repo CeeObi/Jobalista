@@ -38,7 +38,7 @@ const Login = () => {
     useEffect(() => {
         if(user){
             setTimeout(() => {
-                navigate("/dashboard") 
+                navigate("/") 
             }, 1000);
         }
     },[user])

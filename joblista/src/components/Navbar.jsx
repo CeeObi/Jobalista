@@ -2,6 +2,10 @@ import NavLinks from './NavLinks';
 import Logo from './Logo';
 import DropDown from './DropDown';
 import { useDispatch, useSelector } from 'react-redux';
+import { FaAlignLeft, FaCaretDown, FaHome, FaUserCircle } from "react-icons/fa";
+import { toggleSideBar } from '../features/user/userSlice';
+
+
 
 
 
@@ -9,29 +13,47 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 const Navbar = () => {
-    // const dispatch = useDispatch()
-    // const numItemsInCart = useSelector((state) => state.cartState.numItemsInCart)
+    const dispatch = useDispatch()
+    const {user} = useSelector((state) => state.userStore)
     // const handleTheme = () => {
     //     dispatch(toggleTheme())        
     
+    const handleToggleSideBar = () => {
+        dispatch(toggleSideBar())       
+
+    }
+
     return (
     <nav className="bg-base-200 ">
         <div className="navbar align-element">
             {/*TITLE */}
-            <div className="navbar-start">       
-                <div className='mx-2'>
-                    <Logo />
-                </div>         
+            <div className="navbar-start">              
+                <button type='button' className='btn btn-primary btn-sm toggle-primary  mx-2 ' onClick={handleToggleSideBar}>
+                    <FaAlignLeft />     
+                </button>         
             </div>            
             <div className="navbar-center hidden lg:flex">
                 <ul className='menu menu-horizontal'>
-                    <NavLinks />
+                    <Logo />
+                </ul>
+            </div>
+            <div className="navbar-center lg:hidden">
+                <ul className='menu menu-horizontal'>
+                    <h1>Dashboard</h1>
                 </ul>
             </div>
             <div className="navbar-end">
-               <span className='hidden lg:flex'>None</span>
-               {/* DROPDOWN */}
-               <DropDown />
+                <details className='flex btn btn-sm dropdown dropdown-end mr-3'>
+                    <summary tabIndex={0} className='flex'>
+                        <FaUserCircle className=""/>
+                        <span className='mx-2' >{user?.name}</span> 
+                        <FaCaretDown />
+                    </summary>
+                    <ul tabIndex={0} className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 flex items-center'  onClick={() => console.log("Logout clicked")}>
+                        <li><button className='w-100 mx-3 px-10 btn-warning'> Logout</button></li>
+                    </ul>
+                </details>               
+               
             </div>
         </div>
     </nav>

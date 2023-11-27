@@ -1,4 +1,4 @@
-import { FaHome } from "react-icons/fa";
+import { FaAlignLeft, FaHome } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 
@@ -6,9 +6,10 @@ import { Link } from "react-router-dom";
 
 
 
+FaAlignLeft
 
 const NavLinks = () => {
-  return (<>
+  return (<>    
     <li className="w-50"><Link to="/register"><FaHome /></Link></li>
     <li className=""><Link to="/register">Register</Link></li>
     <li className=""><Link to="">NavLinks</Link></li>
