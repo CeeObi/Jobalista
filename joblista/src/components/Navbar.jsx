@@ -3,7 +3,7 @@ import Logo from './Logo';
 import DropDown from './DropDown';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaAlignLeft, FaCaretDown, FaHome, FaUserCircle } from "react-icons/fa";
-import { toggleSideBar } from '../features/user/userSlice';
+import { logoutUser, toggleSideBar } from '../features/user/userSlice';
 
 
 
@@ -22,7 +22,12 @@ const Navbar = () => {
         dispatch(toggleSideBar())       
 
     }
+    const handleLogout=() => {
+        dispatch(logoutUser())
+    }
 
+
+    
     return (
     <nav className="bg-base-200 ">
         <div className="navbar align-element">
@@ -37,24 +42,23 @@ const Navbar = () => {
                     <Logo />
                 </ul>
             </div>
-            <div className="navbar-center lg:hidden">
+            <div className="navbar-center lg:hidden"> 
                 <ul className='menu menu-horizontal'>
                     <h1>Dashboard</h1>
                 </ul>
             </div>
-            <div className="navbar-end">
-                <details className='flex btn btn-sm dropdown dropdown-end mr-3'>
+            <div className="navbar-end ">
+                <details className='flex btn btn-sm dropdown dropdown-end mr-6'>
                     <summary tabIndex={0} className='flex'>
                         <FaUserCircle className=""/>
                         <span className='mx-2' >{user?.name}</span> 
                         <FaCaretDown />
                     </summary>
-                    <ul tabIndex={0} className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 flex items-center'  onClick={() => console.log("Logout clicked")}>
-                        <li><button className='w-100 mx-3 px-10 btn-warning'> Logout</button></li>
+                    <ul tabIndex={0} className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 flex items-center'  >
+                        <li><button onClick={handleLogout} className='w-100 mx-3 px-10 btn-warning block'> Logout</button></li>
                     </ul>
-                </details>               
-               
-            </div>
+                </details>    
+                               </div>
         </div>
     </nav>
   )

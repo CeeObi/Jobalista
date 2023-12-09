@@ -1,68 +1,32 @@
 import { useState } from 'react';
-import {Error, Landing, Login, Register} from './Pages';
-import {RouterProvider, createBrowserRouter} from "react-router-dom";
-import { Provider } from 'react-redux';
-import { store } from './Store';
+import {Error, Landing, Login, ProtectedRoute, Register} from './Pages';
+// import { BrowserRouter,Route,Routes} from "react-router-dom";
 import { AddJob, AllJobs, Profile, SharedLayout, Stats } from './Pages/Dashboard';
+import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
 
 
 
 
-const router = new createBrowserRouter([
-  {
-    path:"/",
-    element: <SharedLayout />,
-    errorElement: <Error />,
-    children:[
-      {
-        index:true,
-        // path:"/stats",
-        element: <Stats />,
-        errorElement: <Error />,
-      },
-      {
-        index:true,
-        path:"/add-job",
-        element: <AddJob />,
-        errorElement: <Error />,
-      },
-      {
-        path:"/all-jobs",
-        element: <AllJobs />,
-        errorElement: <Error />,
-      },
-      {
-        path:"/profile",
-        element: <Profile />,
-        errorElement: <Error />,
-      }
-    ]
-  },  
-  {
-    path:"/landing",
-    element: <Landing />,
-    errorElement: <Error />,
-  },
-  {
-    path:"/register",
-    element: <Register />,
-    errorElement: <Error />,
-  },  
-  {
-    path:"/login",
-    element: <Login />,
-    errorElement: <Error />,
-  },
-])
-
-
-
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route>
+          <Route path="/landing" element={<Landing/>}/>
+          <Route path="/register" element={<Register/>}/>
+          <Route path="/login" element={<Login/>} errorElement={<Error />}/>    
+          <Route path="/" element={ <ProtectedRoute>   <SharedLayout/>  </ProtectedRoute>  } />
+          
+          <Route path="*"  element={<Error />}/>          
+              
+    </Route>   
+      
+      
+  )
+);
 
 function App() {
   return (
-    <Provider store={store} >
-      <RouterProvider router={router} />
-    </Provider>
+    <RouterProvider router={router} />
+    
   )
 }
 
