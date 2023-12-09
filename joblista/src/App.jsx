@@ -13,8 +13,7 @@ const router = createBrowserRouter(
           <Route path="/landing" element={<Landing/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/login" element={<Login/>} errorElement={<Error />}/>    
-          <Route path="/" element={ <ProtectedRoute>   <SharedLayout/>  </ProtectedRoute>  } />
-          
+          <Route path="/" element={ <ProtectedRoute>   <SharedLayout/>  </ProtectedRoute>  } />          
           <Route path="*"  element={<Error />}/>          
               
     </Route>   

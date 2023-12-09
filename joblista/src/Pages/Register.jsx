@@ -33,14 +33,14 @@ const Register = () => {
       toast.error("please fill all fields")      
       return;
     }   
-    dispatch(registerUser({name,email,password}));        
-    return
+    return dispatch(registerUser({name,email,password}));        
+    
   }
 
   useEffect( () => {
       if (user){
       setTimeout(() => {
-        navigate("/dashboard")
+        navigate("/")
       }, 1000);
       }
     },[user]

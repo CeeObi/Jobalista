@@ -33,7 +33,8 @@ const Login = () => {
             toast.error("please fill all fields")      
             return
         }    
-        dispatch(loginUser({email,password}));        
+        dispatch(loginUser({email,password}));  
+
     }
 
     useEffect(() => {

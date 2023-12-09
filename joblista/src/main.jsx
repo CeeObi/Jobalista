@@ -18,9 +18,9 @@ import { ToastContainer} from 'react-toastify';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <>
     <Provider store={store} >
-      <App tab="home"/>
-      <ToastContainer position='top-center' autoClose={1500} className="capitalize"/> 
+      <App tab="home"/>      
     </Provider>
+    <ToastContainer position='top-center' autoClose={1500} className="capitalize"/> 
     
     
   </>,
