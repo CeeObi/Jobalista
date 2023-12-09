@@ -20,8 +20,7 @@ const registerUser = createAsyncThunk("user/registerUser", async(user, {rejectWi
         const response = await customFetch.post("/auth/register", user);        
         return response.data;      
     } 
-    catch (error) {    
-        // console.log(error)    
+    catch (error) {     
         return rejectWithValue(error.response.data.msg);
 
     }
@@ -31,7 +30,6 @@ const registerUser = createAsyncThunk("user/registerUser", async(user, {rejectWi
 const loginUser = createAsyncThunk("user/loginUser",async(user,thunkAPI)=>{
     try {     
         const response = await customFetch.post("/auth/login", user);
-        // console.log(response)
         return response.data;      
     } 
     catch (error) {        
@@ -58,7 +56,6 @@ const userSlice = createSlice({
         .addCase( registerUser.pending, (state) =>{ state.isLoading = true; })
         .addCase( registerUser.fulfilled, (state,{payload}) =>{            
             const {user} = payload;
-            console.log(user)
             state.user = user;
             addUserToLocalStorage(user)
             state.isLoading = false;
@@ -66,6 +63,7 @@ const userSlice = createSlice({
         .addCase( registerUser.rejected, (state,{payload}) =>{
             state.isLoading = false;
             toast.error(payload)})  
+
         .addCase( loginUser.pending, (state) =>{ state.isLoading = true; })
         .addCase( loginUser.fulfilled, (state,{payload}) =>{            
             const {user} = payload;

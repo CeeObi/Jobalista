@@ -33,13 +33,14 @@ const Login = () => {
             toast.error("please fill all fields")      
             return
         }    
-        dispatch(loginUser({email,password}));  
+        return dispatch(loginUser({email,password}));  
 
     }
 
+
     useEffect(() => {
-        if(user){
-            setTimeout(() => {
+        if (user){
+            setTimeout( () => {
                 navigate("/") 
             }, 1000);
         }
@@ -47,14 +48,13 @@ const Login = () => {
 
 
     return <section className="h-screen grid place-items-center">
-    <Form method="POST" onSubmit={handleSubmit} className="card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-6 border-t-4 border-blue-400">
+    <Form onSubmit={handleSubmit} className="card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-6 border-t-4 border-blue-400">
         <div className="self-center"><Logo /></div>
         <h4 className="text-center font-bold text-3xl">Login</h4>
         <div>
             <FormInput type="email" name="email" label="email" changeVal={handleChange} value={values.email} />
             <FormInput type="password" name="password" label="password"  changeVal={handleChange} value={values.password}/>
-        </div>
-        
+        </div>        
         <div className="mt-4">
             <SubmitBtn text="Login" isLoading={isLoading}/>            
         </div>
