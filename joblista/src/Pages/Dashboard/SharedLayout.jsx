@@ -7,7 +7,7 @@ const SharedLayout = () => {
   return (
 <main className="lg:flex flex-wrap">
     <div className="lg:w-1/5"> 
-        <SmallSideBar />
+        {/* <SmallSideBar /> */}
         <BigSideBar />
     </div>
 

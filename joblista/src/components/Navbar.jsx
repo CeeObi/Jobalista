@@ -1,30 +1,51 @@
+import React, { useEffect, useState } from 'react'
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 import NavLinks from './NavLinks';
+
 import Logo from './Logo';
 import DropDown from './DropDown';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaAlignLeft, FaCaretDown, FaHome, FaUserCircle } from "react-icons/fa";
 import { logoutUser, toggleSideBar } from '../features/user/userSlice';
+import SmallSideBar from './SmallSideBar';
 
-
-
-
+import { FaTimes } from 'react-icons/fa'
+                
 
 
 
 
 const Navbar = () => {
+    const [showModal,setShowModal]=useState(true)
+    const [wasModalOn, setWasModalOn] = useState(false)
     const dispatch = useDispatch()
     const {user} = useSelector((state) => state.userStore)
     // const handleTheme = () => {
     //     dispatch(toggleTheme())        
     
-    const handleToggleSideBar = () => {
-        dispatch(toggleSideBar())       
+    const handleToggleSideBar = () => {        
+        dispatch(toggleSideBar())
+        // setWasModalOn(true)       
 
     }
     const handleLogout=() => {
         dispatch(logoutUser())
     }
+
+    
+        useEffect(() => {
+          const handleResize = () => {
+            if (window.innerWidth >= 1024)
+                setShowModal(false)
+            // else{   
+            // if (wasModalOn){  
+            //     if (window.innerWidth<1024){              
+            //         setShowModal(true) }                 
+            // }}
+      }      
+          window.addEventListener('resize', handleResize)
+        })
 
 
     
@@ -32,11 +53,23 @@ const Navbar = () => {
     <nav className="bg-base-200 ">
         <div className="navbar align-element">
             {/*TITLE */}
-            <div className="navbar-start">              
-                <button type='button' className='btn btn-primary btn-sm toggle-primary  mx-2 ' onClick={handleToggleSideBar}>
-                    <FaAlignLeft />     
-                </button>         
-            </div>            
+            <div className="navbar-start">  
+                <Popup  trigger={
+                        <button type='button' className='btn btn-primary btn-sm toggle-primary  mx-2 ' onClick={handleToggleSideBar}>
+                            <FaAlignLeft />     
+                        </button>  
+                } position="center" modal open={showModal} onClose={() => setShowModal(false)}>
+                {close => (
+                <div className='' style={{ height: '80vh', overflow: 'scroll' }}>
+                    <button className="button " onClick={() => {close();setWasModalOn(false)}}>
+                        <FaTimes />
+                    </button>
+                    <SmallSideBar/>
+                </div>
+                )}
+                </Popup>         
+            </div>  
+                    
             <div className="navbar-center hidden lg:flex">
                 <ul className='menu menu-horizontal'>
                     <Logo />

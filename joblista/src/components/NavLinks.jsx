@@ -6,14 +6,21 @@ import { Link } from "react-router-dom";
 
 
 
-FaAlignLeft
+
 
 const NavLinks = () => {
-  return (<>    
-    <li className="w-50"><Link to="/register"><FaHome /></Link></li>
-    <li className=""><Link to="/register">Register</Link></li>
-    <li className=""><Link to="">NavLinks</Link></li>
-    </>
+  return (
+<div className="">
+    <div>
+        <div className=" btn text-center my-10"><Link to="/register"><FaHome  /> <span className="mx-5">Home</span></Link></div>
+    </div>
+    <div>
+        <div className=" btn text-center my-10"><Link to="/register"><FaHome  /> <span className="mx-5">Home</span></Link></div>
+    </div>
+    <div>
+        <div className=" btn text-center my-10"><Link to="/register"><FaHome  /> <span className="mx-5">Home</span></Link></div>
+    </div>
+</div>
   )
 }
 
