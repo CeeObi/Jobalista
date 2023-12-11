@@ -12,21 +12,26 @@ import SmallSideBar from './SmallSideBar';
 
 import { FaTimes } from 'react-icons/fa'
                 
-
+const getModalStats=() =>{
+    const mdS = sessionStorage.getItem('showModalstats')
+    return mdS || null
+}
 
 
 
 const Navbar = () => {
-    const [showModal,setShowModal]=useState(true)
-    const [wasModalOn, setWasModalOn] = useState(false)
+    const [showModal,setShowModal]=useState(false)
     const dispatch = useDispatch()
     const {user} = useSelector((state) => state.userStore)
     // const handleTheme = () => {
     //     dispatch(toggleTheme())        
     
-    const handleToggleSideBar = () => {        
-        dispatch(toggleSideBar())
-        // setWasModalOn(true)       
+    const handleToggleSideBar = () => {   
+        setShowModal(true)     
+        sessionStorage.setItem("showModalstats",true)  
+    
+
+         
 
     }
     const handleLogout=() => {
@@ -37,13 +42,16 @@ const Navbar = () => {
         useEffect(() => {
           const handleResize = () => {
             if (window.innerWidth >= 1024)
-                setShowModal(false)
-            // else{   
-            // if (wasModalOn){  
-            //     if (window.innerWidth<1024){              
-            //         setShowModal(true) }                 
-            // }}
-      }      
+                setShowModal(false)           
+
+            if (window.innerWidth<1024){ 
+                const modalsrch=sessionStorage.getItem("showModalstats")
+                if (modalsrch==="true"){ 
+                    setShowModal(true) }  
+                if (modalsrch==="false"){
+                    setShowModal(false) }                    
+            }
+         }   
           window.addEventListener('resize', handleResize)
         })
 
@@ -54,14 +62,13 @@ const Navbar = () => {
         <div className="navbar align-element">
             {/*TITLE */}
             <div className="navbar-start">  
-                <Popup  trigger={
-                        <button type='button' className='btn btn-primary btn-sm toggle-primary  mx-2 ' onClick={handleToggleSideBar}>
-                            <FaAlignLeft />     
-                        </button>  
-                } position="center" modal open={showModal} onClose={() => setShowModal(false)}>
+                <button onClick={handleToggleSideBar}>CLicks</button>
+                <Popup   position="center" modal open={showModal} onClose={() => {setShowModal(false);}}>
                 {close => (
-                <div className='' style={{ height: '80vh', overflow: 'scroll' }}>
-                    <button className="button " onClick={() => {close();setWasModalOn(false)}}>
+                <div className='' style={{ height: '80vh', overflow: 'scroll' }} >
+                    <button className="button btn " onClick={() => {
+                        sessionStorage.setItem("showModalstats",false);
+                        setShowModal(false);close(); }}>
                         <FaTimes />
                     </button>
                     <SmallSideBar/>
