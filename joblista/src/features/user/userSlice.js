@@ -44,7 +44,10 @@ const userSlice = createSlice({
     name:"user",
     initialState: initialState,
     reducers:{
-        toggleSideBar:(state) => {state.isSideBarOpen = !state.isSideBarOpen},
+        toggleSideBar:(state) => {
+            state.isSideBarOpen = !state.isSideBarOpen;
+            // sessionStorage.setItem("showModalstats",true) 
+        },
         logoutUser:(state) => {
             state.user=null
             state.isSideBarOpen=false
