@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-// import NavLinks from './NavLinks';
-
 import Logo from './Logo';
 // import DropDown from './DropDown';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,21 +11,19 @@ import SmallSideBar from './SmallSideBar';
 
 
                 
-const Navbar = () => {
-    const [showModal,setShowModal]=useState(false)
+const Navbar = ({handleShowBigBar}) => {
+    const [smallShowModal,setSmallShowModal]=useState(false)
     const dispatch = useDispatch()
     const {user} = useSelector((state) => state.userStore)
-    // const {isSideBarOpen} = useSelector((state) => state.userStore)
-       
-    
     const handleToggleSideBar = () => {   
-        setShowModal(true)     
-        sessionStorage.setItem("showModalstats",true)  
-        dispatch(toggleSideBar())
-    
-
-         
-
+        if (window.innerWidth < 1024){
+            setSmallShowModal(true)     
+            sessionStorage.setItem("showModalstats",true)  
+            dispatch(toggleSideBar())
+        }
+        if (window.innerWidth >= 1024){
+            handleShowBigBar()
+        }
     }
     const handleLogout=() => {
         dispatch(logoutUser())
@@ -36,13 +32,13 @@ const Navbar = () => {
     useEffect(() => {
         const handleResize = () => {
         if (window.innerWidth >= 1024)
-            setShowModal(false) 
+            setSmallShowModal(false) 
         if (window.innerWidth<1024){ 
             const modalsrch=sessionStorage.getItem("showModalstats")
             if (modalsrch==="true"){ 
-                setShowModal(true) }  
+                setSmallShowModal(true) }  
             if (modalsrch==="false"){
-                setShowModal(false) }                    
+                setSmallShowModal(false) }                    
         }
         }   
         window.addEventListener('resize', handleResize)
@@ -50,21 +46,21 @@ const Navbar = () => {
 
     const handleClicked = () => {
         sessionStorage.setItem("showModalstats",false);
-        setShowModal(false)        
+        setSmallShowModal(false)        
       }
     
     return (
     <nav className="bg-base-200 ">
-        <div className="navbar align-element">
+        <div className="navbar ">
             {/*TITLE */}
             <div className="navbar-start">  
                 <button onClick={handleToggleSideBar} className='btn btn-sm ms-4 my-7 text-lg p-0'>  <FaAlignLeft className='m-0 p-0'/>   </button>
-                <Popup   position="center" modal open={(window.innerWidth<1024)&&showModal} onClose={() => {setShowModal(false);}}>
+                <Popup   position="center" modal open={(window.innerWidth<1024)&&smallShowModal} onClose={() => {setSmallShowModal(false);}}>
                     {close => (
                     <div className='' style={{ height: '80vh', overflow: 'scroll' }} >
                         <div className=" button px-0 m-1 text-2xl text-primary" onClick={() => {
                             sessionStorage.setItem("showModalstats",false);
-                            setShowModal(false);close(); }}>
+                            setSmallShowModal(false);close(); }}>
                             <FaTimesCircle className='mx-0 px-0 self-center hover:text-purple-300'/>
                         </div>
                         <SmallSideBar clicked={handleClicked} barClass='lg:hidden'/>

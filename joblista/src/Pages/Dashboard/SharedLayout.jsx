@@ -1,22 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom';
 import { BigSideBar, Navbar, SmallSideBar } from '../../components';
 
 
 const SharedLayout = () => {
-  return (
-<main className="lg:flex flex-wrap">
-    <div className="lg:w-1/5"> 
-        {/* <SmallSideBar /> */}
-        <BigSideBar />
-    </div>
+  const [showBigBar, setShowBigBar] = useState(true)
 
-    <div className="lg:w-4/5">
-        <Navbar />      
-        <Outlet /> 
-    </div>
-</main>
+  const handleShowBigBar = () =>{
+        setShowBigBar(!showBigBar)
+  }
+
+
+
+
+  return (
+  <main className="lg:flex flex-wrap">
+      {showBigBar&&
+      <div className="lg:w-1/5"> 
+          <BigSideBar />
+      </div>
+      }
+
+      <div className="lg:w-4/5 bg-black">
+          <Navbar handleShowBigBar={handleShowBigBar} />      
+          <Outlet /> 
+      </div>
+  </main>
   )
 }
+
+
+
 
 export default SharedLayout;
