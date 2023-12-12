@@ -6,12 +6,12 @@ import NavLinks from './NavLinks'
 
 
 
-const SmallSideBar = ({clicked}) => {
+const SmallSideBar = ({clicked, barClass}) => {
+
+
   
-
-
   return (
-  <div className='lg:hidden'>
+  <div className={barClass}>
             <div className='mx-auto'>
               <div className='mx-auto flex align-middle mb-10'>
                   <header className='mx-auto mt-9'>

@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react';
+import SmallSideBar from './SmallSideBar';
 
 const BigSideBar = () => {
-  return (
-    <h2 className='hidden lg:flex'>BigSideBar</h2>
+  const [showModal,setShowModal]=useState(false)
+  
+  const handleClicked = () => {
+    setShowModal(false);
+  }
+
+
+  
+  return (<div>
+  <SmallSideBar clicked={handleClicked}  barClass='hidden lg:flex'/></div>
   )
 }
 

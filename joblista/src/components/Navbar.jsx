@@ -10,7 +10,8 @@ import { FaAlignLeft, FaCaretDown, FaHome, FaUserCircle, FaTimesCircle } from "r
 import { logoutUser, toggleSideBar } from '../features/user/userSlice';
 import SmallSideBar from './SmallSideBar';
 
-import { FaTimes } from 'react-icons/fa'
+
+
                 
 const Navbar = () => {
     const [showModal,setShowModal]=useState(false)
@@ -48,7 +49,8 @@ const Navbar = () => {
     })
 
     const handleClicked = () => {
-        setShowModal(false)
+        sessionStorage.setItem("showModalstats",false);
+        setShowModal(false)        
       }
     
     return (
@@ -65,7 +67,7 @@ const Navbar = () => {
                             setShowModal(false);close(); }}>
                             <FaTimesCircle className='mx-0 px-0 self-center hover:text-purple-300'/>
                         </div>
-                        <SmallSideBar clicked={handleClicked}/>
+                        <SmallSideBar clicked={handleClicked} barClass='lg:hidden'/>
                     </div>
                     )}
                 </Popup>         

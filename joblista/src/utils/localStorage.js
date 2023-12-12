@@ -15,10 +15,16 @@ const getUserFromLocalStorage = () => {
     return user;
     }
 
+const getIdFromLocalStorage = () => {
+    const result = localStorage.getItem("currSelId")
+    const user = result 
+    return user;
+    }
 
 
 
 
 
 
-export {addUserToLocalStorage, removeUserFromLocalStorage, getUserFromLocalStorage};
+
+export {addUserToLocalStorage, removeUserFromLocalStorage, getUserFromLocalStorage, getIdFromLocalStorage};

@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import customFetch from '../../utils/axios';
 import { redirect } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { addUserToLocalStorage, getUserFromLocalStorage, removeUserFromLocalStorage } from '../../utils/localStorage';
+import { addUserToLocalStorage, getUserFromLocalStorage, removeUserFromLocalStorage, getIdFromLocalStorage } from '../../utils/localStorage';
 
 
 
@@ -10,13 +10,13 @@ import { addUserToLocalStorage, getUserFromLocalStorage, removeUserFromLocalStor
 const initialState = {
     isLoading:false,
     isSideBarOpen:false,
-    user:getUserFromLocalStorage()
+    user:getUserFromLocalStorage(),
+    currentlySelectedId:getIdFromLocalStorage()
 }
 
 
 const registerUser = createAsyncThunk("user/registerUser", async(user, {rejectWithValue})=>{    
-    try {   
-        console.log(user)  
+    try {  
         const response = await customFetch.post("/auth/register", user);        
         return response.data;      
     } 
@@ -38,20 +38,22 @@ const loginUser = createAsyncThunk("user/loginUser",async(user,thunkAPI)=>{
 })
 
 
-
-
 const userSlice = createSlice({
     name:"user",
     initialState: initialState,
     reducers:{
         toggleSideBar:(state) => {
             state.isSideBarOpen = !state.isSideBarOpen;
-            // sessionStorage.setItem("showModalstats",true) 
         },
         logoutUser:(state) => {
             state.user=null
             state.isSideBarOpen=false
             removeUserFromLocalStorage()
+        },
+        updateSelectedId:(state,{payload}) =>{
+            const {currId} = payload
+            state.currentlySelectedId = currId
+            localStorage.setItem("currSelId",currId)             
         }
     },
     extraReducers: (builder) => {
@@ -83,6 +85,8 @@ const userSlice = createSlice({
 
 
 
+
+
 export default userSlice.reducer;
 export {registerUser,loginUser,};
-export const {toggleSideBar,logoutUser} = userSlice.actions;
+export const {toggleSideBar,logoutUser,updateSelectedId} = userSlice.actions;
