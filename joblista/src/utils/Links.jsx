@@ -8,10 +8,10 @@ import { IoBarChartSharp } from "react-icons/io5";
 
 
 const Links = [
-{id:1,link:"/",text:"stats",icon:<IoBarChartSharp />},
-{id:2,link:"/all-jobs",text:"all jobs",icon:<MdQueryStats />},
-{id:3,link:"/add-job",text:"add job",icon:<FaWpforms />},
-{id:4,link:"/profile",text:"profile",icon:<ImProfile />}
+{id:1,path:"/",text:"stats",icon:<IoBarChartSharp />,active:false},
+{id:2,path:"/all-jobs",text:"all jobs",icon:<MdQueryStats />,active:false},
+{id:3,path:"/add-job",text:"add job",icon:<FaWpforms />,active:false},
+{id:4,path:"/profile",text:"profile",icon:<ImProfile />,active:false}
     
 ]
 

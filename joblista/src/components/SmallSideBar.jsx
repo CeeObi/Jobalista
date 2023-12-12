@@ -16,7 +16,7 @@ const SmallSideBar = () => {
                   </header> 
               </div> 
               <div className='flex justify-center'>
-              <div>
+              <div className="mx-auto items-center grid row-auto" >
                   <NavLinks />
               </div>
               </div>  
