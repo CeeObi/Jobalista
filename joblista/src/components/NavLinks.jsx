@@ -5,15 +5,22 @@ import Links from "../utils/Links";
 import { useState } from "react";
 import LinkButton from './LinkButton';
 
+const getCurrSelId = () => {
+    const currSelctId = localStorage.getItem("currSelId")
+    return currSelctId
+}
 
 
 
-const NavLinks = () => {
-    const [currentId, setCurrentId] = useState(false)
+const NavLinks = ({clicked}) => {
+    const [currentId, setCurrentId] = useState(getCurrSelId)
 
 const handleActive = (e) => {
     const currId = e.currentTarget.id
     setCurrentId(currId)
+    clicked()
+    localStorage.setItem("currSelId",currId)
+    
 }
    
 

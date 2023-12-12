@@ -6,7 +6,10 @@ import NavLinks from './NavLinks'
 
 
 
-const SmallSideBar = () => {
+const SmallSideBar = ({clicked}) => {
+  
+
+
   return (
   <div className='lg:hidden'>
             <div className='mx-auto'>
@@ -17,7 +20,7 @@ const SmallSideBar = () => {
               </div> 
               <div className='flex justify-center'>
               <div className="mx-auto items-center grid row-auto" >
-                  <NavLinks />
+                  <NavLinks clicked={clicked} />
               </div>
               </div>  
             </div>              

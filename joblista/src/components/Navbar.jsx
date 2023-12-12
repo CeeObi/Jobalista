@@ -13,7 +13,7 @@ import SmallSideBar from './SmallSideBar';
 import { FaTimes } from 'react-icons/fa'
                 
 const Navbar = () => {
-    const [showModal,setShowModal]=useState(true)//(false)
+    const [showModal,setShowModal]=useState(false)
     const dispatch = useDispatch()
     const {user} = useSelector((state) => state.userStore)
     // const {isSideBarOpen} = useSelector((state) => state.userStore)
@@ -47,7 +47,9 @@ const Navbar = () => {
         window.addEventListener('resize', handleResize)
     })
 
-
+    const handleClicked = () => {
+        setShowModal(false)
+      }
     
     return (
     <nav className="bg-base-200 ">
@@ -63,7 +65,7 @@ const Navbar = () => {
                             setShowModal(false);close(); }}>
                             <FaTimesCircle className='mx-0 px-0 self-center hover:text-purple-300'/>
                         </div>
-                        <SmallSideBar/>
+                        <SmallSideBar clicked={handleClicked}/>
                     </div>
                     )}
                 </Popup>         
