@@ -14,14 +14,13 @@ const SharedLayout = () => {
 
 
   return (
-  <main className="lg:flex flex-wrap">
+  <main className="flex">
       {showBigBar&&
-      <div className="lg:w-1/5"> 
+      <div className="w-1/4"> 
           <BigSideBar />
       </div>
       }
-
-      <div className="lg:w-4/5 bg-black">
+      <div className="w-full">
           <Navbar handleShowBigBar={handleShowBigBar} />      
           <Outlet /> 
       </div>
