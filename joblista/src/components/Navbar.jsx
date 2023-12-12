@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import Logo from './Logo';
-// import DropDown from './DropDown';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaAlignLeft, FaCaretDown, FaHome, FaUserCircle, FaTimesCircle } from "react-icons/fa";
 import { logoutUser, toggleSideBar } from '../features/user/userSlice';
@@ -63,18 +62,23 @@ const Navbar = ({handleShowBigBar}) => {
                             setSmallShowModal(false);close(); }}>
                             <FaTimesCircle className='mx-0 px-0 self-center hover:text-purple-300'/>
                         </div>
+                        <div>                        
+                            <div className='mx-auto flex justify-center my-10'>
+                                <Logo/>
+                            </div>
                         <SmallSideBar clicked={handleClicked} barClass='lg:hidden'/>
+                        </div>
                     </div>
                     )}
                 </Popup>         
             </div>  
                     
-            <div className="navbar-center hidden lg:flex">
+            <div className="navbar-center  lg:hidden ">
                 <ul className='menu menu-horizontal'>
                     <Logo />
                 </ul>
             </div>
-            <div className="navbar-center lg:hidden"> 
+            <div className="navbar-center hidden lg:flex"> 
                 <ul className='menu menu-horizontal'>
                     <h1>Dashboard</h1>
                 </ul>

@@ -1,22 +1,24 @@
 import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom';
-import { BigSideBar, Navbar, SmallSideBar } from '../../components';
+import { BigSideBar, Navbar } from '../../components';
 
+const getBigBarStatus = () => {
+    const bgbStats = sessionStorage.getItem("showBigBar")
+    return JSON.parse(bgbStats)
+}
 
 const SharedLayout = () => {
-  const [showBigBar, setShowBigBar] = useState(true)
-
-  const handleShowBigBar = () =>{
-        setShowBigBar(!showBigBar)
+    const [showBigBar, setShowBigBar] = useState(getBigBarStatus())
+    const handleShowBigBar = () =>{
+        const bigBarStat= !showBigBar
+        sessionStorage.setItem("showBigBar",bigBarStat)  
+        setShowBigBar(bigBarStat)
   }
-
-
-
 
   return (
   <main className="flex">
       {showBigBar&&
-      <div className="w-1/4"> 
+      <div className="w-1/4 hidden lg:block"> 
           <BigSideBar />
       </div>
       }
