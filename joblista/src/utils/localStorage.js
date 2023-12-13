@@ -16,7 +16,7 @@ const getUserFromLocalStorage = () => {
     }
 
 const getIdFromLocalStorage = () => {
-    const result = localStorage.getItem("currSelId")
+    const result = localStorage.getItem("currSelId") || "4"
     const user = result 
     return user;
     }

@@ -37,11 +37,23 @@ const loginUser = createAsyncThunk("user/loginUser",async(user,thunkAPI)=>{
     }    
 })
 
+////////////////////
 
+const editUserData = createAsyncThunk("user/editUserData",async(user,thunkAPI)=>{
+    try {     
+        const response = await customFetch.post("/auth/login", user);
+        return response.data;      
+    } 
+    catch (error) {        
+        return thunkAPI.rejectWithValue(error.response.data.msg);
+    }    
+})
+
+////////////////
 const userSlice = createSlice({
     name:"user",
     initialState: initialState,
-    reducers:{
+    reducers:{ // Rem here payload comes from the argument from the dispatch method        
         toggleSideBar:(state) => {
             state.isSideBarOpen = !state.isSideBarOpen;
         },
@@ -56,7 +68,7 @@ const userSlice = createSlice({
             localStorage.setItem("currSelId",currId)             
         }
     },
-    extraReducers: (builder) => {
+    extraReducers: (builder) => {//Rem here payload comes from the response from createasyncthunk call        
         builder
         .addCase( registerUser.pending, (state) =>{ state.isLoading = true; })
         .addCase( registerUser.fulfilled, (state,{payload}) =>{            
@@ -68,15 +80,26 @@ const userSlice = createSlice({
         .addCase( registerUser.rejected, (state,{payload}) =>{
             state.isLoading = false;
             toast.error(payload)})  
-
         .addCase( loginUser.pending, (state) =>{ state.isLoading = true; })
-        .addCase( loginUser.fulfilled, (state,{payload}) =>{            
+        .addCase( loginUser.fulfilled, (state,{payload}) =>{    
             const {user} = payload;
             state.user = user;
             addUserToLocalStorage(user)
             state.isLoading = false;
             toast.success(`Welcome back, ${user.name}`)})            
         .addCase( loginUser.rejected, (state,{payload}) =>{
+            state.isLoading = false;
+            toast.error(payload)})
+
+
+        .addCase( editUserData.pending, (state) =>{ state.isLoading = true; })
+        .addCase( editUserData.fulfilled, (state,{payload}) =>{            
+            const {user} = payload;
+            state.user = user;
+            addUserToLocalStorage(user)
+            state.isLoading = false;
+            toast.success(`successfully updated profile details, ${user.name}`)})            
+        .addCase( editUserData.rejected, (state,{payload}) =>{
             state.isLoading = false;
             toast.error(payload)})
     }
@@ -88,5 +111,5 @@ const userSlice = createSlice({
 
 
 export default userSlice.reducer;
-export {registerUser,loginUser,};
+export {registerUser,loginUser,editUserData};
 export const {toggleSideBar,logoutUser,updateSelectedId} = userSlice.actions;

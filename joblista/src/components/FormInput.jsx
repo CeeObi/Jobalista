@@ -10,8 +10,6 @@ const FormInput = ({label, name, type, value, size, changeVal}) => {
 }
 
 
-//<FormInput label="email" name="identifier" type="email" />
-
 
 
 export default FormInput;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {FormInput, Logo, SubmitBtn} from "../components"
-import { Form,Link, redirect, useNavigate } from "react-router-dom";
+import { Form,Link, useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../features/user/userSlice";
@@ -55,7 +55,7 @@ const Login = () => {
             <FormInput type="email" name="email" label="email" changeVal={handleChange} value={values.email} />
             <FormInput type="password" name="password" label="password"  changeVal={handleChange} value={values.password}/>
         </div>        
-        <div className="mt-4">
+        <div className="form-control">
             <SubmitBtn text="Login" isLoading={isLoading}/>            
         </div>
         <p className="text-center">
