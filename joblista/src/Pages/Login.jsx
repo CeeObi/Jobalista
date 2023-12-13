@@ -20,7 +20,7 @@ const initialState = {
 const Login = () => {  
     const dispatch = useDispatch() 
     const navigate = useNavigate() ;
-    const [values,setValues] = useState(initialState);
+    const [values,setValues] = useState("")//initialState);
     const {user,isLoading} = useSelector((state) => state.userStore);
 
     const handleChange = (event) => {

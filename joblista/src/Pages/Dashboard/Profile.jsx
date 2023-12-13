@@ -21,7 +21,7 @@ const Profile = () => {
     
 
   const handleChange = (event) => {
-    setValues({...userData, [event.target.name] : event.target.value })
+    setUserData({...userData, [event.target.name] : event.target.value })
   } 
   
   

@@ -41,10 +41,13 @@ const loginUser = createAsyncThunk("user/loginUser",async(user,thunkAPI)=>{
 
 const editUserData = createAsyncThunk("user/editUserData",async(user,thunkAPI)=>{
     try {     
-        const response = await customFetch.post("/auth/login", user);
+        const response = await customFetch.patch("/auth/updateUser", user, { headers:{
+                Authorization: `Bearer ${thunkAPI.getState().userStore.user.token}`
+        }
+    });
         return response.data;      
     } 
-    catch (error) {        
+    catch (error) {       
         return thunkAPI.rejectWithValue(error.response.data.msg);
     }    
 })
@@ -90,8 +93,6 @@ const userSlice = createSlice({
         .addCase( loginUser.rejected, (state,{payload}) =>{
             state.isLoading = false;
             toast.error(payload)})
-
-
         .addCase( editUserData.pending, (state) =>{ state.isLoading = true; })
         .addCase( editUserData.fulfilled, (state,{payload}) =>{            
             const {user} = payload;

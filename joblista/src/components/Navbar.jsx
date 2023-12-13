@@ -94,7 +94,7 @@ const Navbar = ({handleShowBigBar}) => {
                         <li><button onClick={handleLogout} className='w-100 mx-3 px-10 btn-warning block'> Logout</button></li>
                     </ul>
                 </details>    
-                               </div>
+               </div>
         </div>
     </nav>
   )
