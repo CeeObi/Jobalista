@@ -22,8 +22,13 @@ const jobSlice = createSlice({
     name:"job",
     initialState: initialState,
     reducers:{ // Rem here payload comes from the argument from the redux dispatch method        
-        toggleSideBar:(state) => {
-            state.isSideBarOpen = !state.isSideBarOpen;
+        handleChange:(state,{payload}) => {
+            const {tname,tvalue} = payload
+            state[tname] = tvalue
+            state.isEditing=true
+        },
+        handleReset:(state)=>{
+                return initialState              
         },
         logoutUser:(state) => {
             state.user=null
@@ -42,4 +47,4 @@ const jobSlice = createSlice({
 
 
 export default jobSlice.reducer
-const { } = jobSlice.actions
+export const {handleChange,handleReset } = jobSlice.actions
