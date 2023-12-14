@@ -7,10 +7,8 @@ import { editUserData } from '../../features/user/userSlice';
 
 
 
-
-
 const Profile = () => {
-      const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const {user,isLoading} = useSelector((state) => state.userStore);//user from redux initialState);
     const [userData,setUserData] = useState({
       name: user?user.name :" ",
@@ -39,7 +37,6 @@ const Profile = () => {
       email: user?user.email :" ",
     })
     return dispatch(editUserData({email:email,location:location,name:name,lastName:lastName}));  
-
 }
   return (
     <div className=''>
@@ -58,8 +55,7 @@ const Profile = () => {
                   </div>             
               </div>
           </Form>
-        </div>
-      
+        </div>      
     </div>
   )
 }

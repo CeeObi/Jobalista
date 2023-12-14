@@ -48,8 +48,9 @@ const Navbar = ({handleShowBigBar}) => {
         setSmallShowModal(false)        
       }
     
+    
     return (
-    <nav className="bg-base-200 ">
+    <nav className="bg-base-200 flex items-center ">
         <div className="navbar ">
             {/*TITLE */}
             <div className="navbar-start">  
@@ -71,23 +72,22 @@ const Navbar = ({handleShowBigBar}) => {
                     </div>
                     )}
                 </Popup>         
-            </div>  
-                    
-            <div className="navbar-center  lg:hidden ">
+            </div>                    
+            <div className="navbar-center  lg:hidden">
                 <ul className='menu menu-horizontal'>
                     <Logo />
                 </ul>
             </div>
-            <div className="navbar-center hidden lg:flex"> 
+            <div className="navbar-center hidden lg:flex items-center  "> 
                 <ul className='menu menu-horizontal'>
-                    <h1>Dashboard</h1>
+                    <h1 className=''>Dashboard</h1>
                 </ul>
             </div>
             <div className="navbar-end ">
-                <details className='flex btn btn-sm dropdown dropdown-end mr-6'>
-                    <summary tabIndex={0} className='flex'>
-                        <FaUserCircle className=""/>
-                        <span className='mx-2' >{user?.name}</span> 
+                <details className='flex dropdown dropdown-end mr-6'>
+                    <summary tabIndex={0} className='flex items-center'> 
+                        <FaUserCircle className="text-2xl text-primary"/>
+                        <span className='mx-2 ' >{user?.name}</span> 
                         <FaCaretDown />
                     </summary>
                     <ul tabIndex={0} className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 flex items-center'  >
