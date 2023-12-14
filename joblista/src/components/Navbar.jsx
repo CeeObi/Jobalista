@@ -84,11 +84,11 @@ const Navbar = ({handleShowBigBar}) => {
                 </ul>
             </div>
             <div className="navbar-end ">
-                <details className='flex dropdown dropdown-end mr-6'>
+                <details className='flex dropdown dropdown-end mr-6 bg-primary rounded-md opacity-90'>
                     <summary tabIndex={0} className='flex items-center'> 
-                        <FaUserCircle className="text-2xl text-primary"/>
-                        <span className='mx-2 ' >{user?.name}</span> 
-                        <FaCaretDown />
+                        <FaUserCircle className="text-2xl text-white m-2 "/>
+                        <span className='mx-2 text-white' >{user?.name}</span> 
+                        <FaCaretDown className=" text-white me-2 "/>
                     </summary>
                     <ul tabIndex={0} className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 flex items-center'  >
                         <li><button onClick={handleLogout} className='w-100 mx-3 px-10 btn-warning block'> Logout</button></li>
