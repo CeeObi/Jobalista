@@ -2,6 +2,10 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Job from './Job';
 
+
+
+
+
 const JobsContainer = () => {
     const dispatch = useDispatch();
     const {jobs,isLoading} = useSelector((store) => store.allJobsStore)
@@ -20,11 +24,9 @@ const JobsContainer = () => {
     }
 
     return (
-        <div className='mb-0 grid  gap-4 grid-cols-2 pb-0 justify-items-center'>
+        <div className='mb-5 grid  gap-4 grid-cols-2 px-5 justify-items-center'> 
                {jobs.map(
-                (eachJob) =>{ 
-                    const {_id,company, jobType,position,status,jobLocation} = eachJob
-                    return <Job key={eachJob._id} text={company}/>}
+                (eachJob) =><Job key={eachJob._id} {...eachJob}/>
                )}
         </div>
     )

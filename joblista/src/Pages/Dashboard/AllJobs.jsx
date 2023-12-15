@@ -20,7 +20,8 @@ const AllJobs = () => {
   return <>
     <SearchContainer/>
     <div className='mx-auto mt-5'>
-      <div className='mx-10 py-3 mb-0 shadow bg-white'>      
+      <div className='mx-10 py-3 mb-0 shadow bg-white'>  
+      <h4 className='mx-6 font-semibold mt-8 mb-3'>5 Jobs Found</h4>    
           <JobsContainer />          
       </div>
     </div>
