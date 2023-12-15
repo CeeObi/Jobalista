@@ -5,25 +5,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import FormDropDown from '../../components/FormDropDown';
 import { createJob, handleChange, handleReset } from '../../features/job/jobSlice';
 import { toast } from 'react-toastify';
+import { allJob } from '../../features/allJobs/allJobsSlice';
 
 
 
 
 const AllJobs = () => {
- 
+  const dispatch = useDispatch()
 
+  useEffect(()=>{
+    dispatch(allJob())
+  },[])
 
   return <>
     <SearchContainer/>
     <div className='mx-auto mt-5'>
-      <div className='flex justify-center mx-10 px-10 py-3 mb-0 shadow bg-white'>
-      <div className='mt-3 mb-0 grid grid-flow-row-dense gap-4 grid-cols-2 grid-rows-3 pb-0 bg-gray-500 text-center items-center'>
-          <JobsContainer/>
-        </div>
+      <div className='mx-10 py-3 mb-0 shadow bg-white'>      
+          <JobsContainer />          
       </div>
     </div>
-  
-    
     </>
 }
 
