@@ -34,7 +34,7 @@ const editUserDataThunk = async (url,user,thunkAPI) => {
     catch (error) {  
         if (error.response.status === 401){
             thunkAPI.dispatch(logoutUser())
-            return thunkAPI.rejectWithValue("Unauthorized! Logged out user..");
+            return thunkAPI.rejectWithValue("Unauthorized! Logged out..");
         }
         return thunkAPI.rejectWithValue(error.response.data.msg);
     }  

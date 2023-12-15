@@ -3,36 +3,39 @@ import { Form } from 'react-router-dom'
 import { FormInput, SubmitBtn } from '../../components'
 import { useDispatch, useSelector } from 'react-redux';
 import FormDropDown from '../../components/FormDropDown';
-import { handleChange, handleReset } from '../../features/job/jobSlice';
+import { createJob, handleChange, handleReset } from '../../features/job/jobSlice';
+import { toast } from 'react-toastify';
 
 
 const AddJob = () => {
-    const dispatch = useDispatch()    
-    const {isLoading, position, company, jobLocation, jobOptions, jobType, statusOptions, status, isEditing, editJobId} = useSelector((store) => store.jobStore);//user from redux initialState);
+  const dispatch = useDispatch()    
+  const {isLoading, position, company, jobLocation, jobOptions, jobType, statusOptions, status, isEditing, editJobId} = useSelector((store) => store.jobStore);//user from redux initialState);
    
 
   const handleInputChange = (event) => {
-    const tname = event.target.name
-    const tvalue = event.target.value 
-    dispatch(handleChange({tname,tvalue }))
-  }   
+    const evntname = event.target.name
+    const evntvalue = event.target.value 
+    dispatch(handleChange({evntname,evntvalue }))
+  }
+  
+  const handleInputReset = () => {
+    dispatch(handleReset())  
+  }
   
   const handleSubmit = (e) => {  
     e.preventDefault()
-    console.log("Yess")
-    // const {jposition,jjobLocation,jcompany} = jobData
-    // if (!jposition || !jcompany || !jjobLocation){      
-    //     toast.error("please fill all fields")      
-    //     return
-    // } 
+    if (!position || !company || !jobLocation){      
+        toast.error("please fill all fields")      
+        return
+    } 
+    dispatch(createJob({position,company,jobLocation,jobType,status}))
+  }
 
-    // return dispatch(editUserData({email:email,location:location,name:name,lastName:lastName}));  
-}
+  // if (isEditing){
+  //   dispatch(handleChange({evntname,evntvalue }))
+  // }
 
-const handleInputReset = () => {
-  dispatch(handleReset())
 
-}
 
 
   return (
@@ -50,7 +53,7 @@ const handleInputReset = () => {
                   <FormDropDown defaultVal={jobType} options={jobOptions} label="job type" name="jobType" changeVal={handleInputChange}/>  
                   <div className='mt-5 mb-0 pb-0 flex items-center justify-between'>
                       <div className='mx-1 w-1/2'>
-                          <FormInput type="reset" value="Clear" size="btn btn-primary" handleClicked={handleInputReset}/> 
+                          <FormInput  isDisabled={isEditing ? false : true} type="reset" value="Clear" size=" cursor-not-allowed btn btn-primary" handleClicked={handleInputReset}/> 
                       </div>                      
                       <div className='mt-4 mx-1 w-1/2'>
                           <SubmitBtn text="Submit" isLoading={isLoading}/>
