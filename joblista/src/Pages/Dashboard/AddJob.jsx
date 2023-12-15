@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Form } from 'react-router-dom'
 import { FormInput, SubmitBtn } from '../../components'
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,8 +10,7 @@ import { toast } from 'react-toastify';
 const AddJob = () => {
   const dispatch = useDispatch()    
   const {isLoading, position, company, jobLocation, jobOptions, jobType, statusOptions, status, isEditing, editJobId} = useSelector((store) => store.jobStore);//user from redux initialState);
-   
-
+  const {location} = useSelector((store) => store.userStore.user)
   const handleInputChange = (event) => {
     const evntname = event.target.name
     const evntvalue = event.target.value 
@@ -31,10 +30,15 @@ const AddJob = () => {
     dispatch(createJob({position,company,jobLocation,jobType,status}))
   }
 
-  // if (isEditing){
-  //   dispatch(handleChange({evntname,evntvalue }))
-  // }
-
+  useEffect(
+    () => {
+      if (isEditing){
+        const evntname="jobLocation"
+        const evntvalue=location
+        dispatch(handleChange({evntname, evntvalue}))
+      }
+    },[isEditing]
+  )
 
 
 
