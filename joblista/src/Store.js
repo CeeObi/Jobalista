@@ -10,7 +10,7 @@ const store = configureStore({
     reducer:{
         userStore:userSlice_Reducer,
         jobStore:jobSlice_Reducer,
-        allJobStore:allJobsSlice,
+        allJobsStore:allJobsSlice,
     }
 })
 

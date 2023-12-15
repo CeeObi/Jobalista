@@ -7,3 +7,5 @@ export {default as DropDown} from "./DropDown";
 export {default as FormInput} from "./FormInput";
 export {default as SubmitBtn} from "./SubmitBtn";
 export {default as LinkButton} from "./LinkButton";
+export {default as JobsContainer} from "./JobsContainer";
+export {default as  SearchContainer} from "./SearchContainer";
