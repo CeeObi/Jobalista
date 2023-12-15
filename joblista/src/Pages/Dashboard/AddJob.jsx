@@ -17,7 +17,7 @@ const AddJob = () => {
     dispatch(handleChange({evntname,evntvalue }))
   }
   
-  const handleInputReset = () => {
+  const handleInputReset = () => {  
     dispatch(handleReset())  
   }
   
@@ -27,16 +27,15 @@ const AddJob = () => {
         toast.error("please fill all fields")      
         return
     } 
-    dispatch(createJob({position,company,jobLocation,jobType,status}))
+    dispatch(createJob({position, company, jobLocation, jobType, status}))
   }
 
   useEffect(
-    () => {
+    () => {  
       if (isEditing){
-        const evntname="jobLocation"
-        const evntvalue=location
-        dispatch(handleChange({evntname, evntvalue}))
-      }
+      const evntname="jobLocation"
+      const evntvalue=location
+      dispatch(handleChange({evntname, evntvalue}))  }    
     },[isEditing]
   )
 

@@ -25,7 +25,7 @@ const Navbar = ({handleShowBigBar}) => {
         }
     }
     const handleLogout=() => {
-        dispatch(logoutUser())
+        dispatch(logoutUser("Logged out successfully.."))
     }
 
     useEffect(() => {

@@ -3,6 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { addUserToLocalStorage, getUserFromLocalStorage, removeUserFromLocalStorage, getIdFromLocalStorage } from '../../utils/localStorage';
 import { createJobThunk } from '../jobThunk';
+import { useSelector } from 'react-redux';
 
 const initialState = {
     isLoading:false,
@@ -36,7 +37,8 @@ const jobSlice = createSlice({
             state.isEditing=true
         },
         handleReset:()=>{
-                return initialState              
+                const userLocation = getUserFromLocalStorage()?.location||""
+                return {...initialState,jobLocation:userLocation}
         },
     },    
     extraReducers: (builder) => {

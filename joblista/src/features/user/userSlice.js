@@ -34,10 +34,13 @@ const userSlice = createSlice({
         toggleSideBar:(state) => {
             state.isSideBarOpen = !state.isSideBarOpen;
         },
-        logoutUser:(state) => {
+        logoutUser:(state,{payload}) => {
             state.user=null
             state.isSideBarOpen=false
             removeUserFromLocalStorage()
+            if (payload){
+                toast.success(payload)
+            }
         },
         updateSelectedId:(state,{payload}) =>{
             const {currId} = payload
