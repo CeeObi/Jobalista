@@ -33,15 +33,6 @@ const allJobsSlice = createSlice({
     name:"allJob",
     initialState: initialState,
     reducers:{ 
-        // handleChange:(state,{payload}) => {
-        //     const {evntname,evntvalue} = payload
-        //     state[evntname] = evntvalue
-        //     state.isEditing=true
-        // },
-        // handleReset:()=>{
-        //         const userLocation = getUserFromLocalStorage()?.location||""
-        //         return {...initialState,jobLocation:userLocation}
-        // },
         showLoading:(state)=>{
             state.isLoading = true
         },        

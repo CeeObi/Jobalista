@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import JobInfo from './JobInfo';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
-import { deleteJob } from '../features/job/jobSlice';
+import { deleteJob, setEditJob } from '../features/job/jobSlice';
 
 
 
@@ -14,6 +14,10 @@ const Job = ({_id,company, jobType,position,status,jobLocation,createdAt}) => {
     
     const handleDeleteJob = () =>{
         dispatch(deleteJob(_id))        
+    }
+
+    const handleEditJob = () => {
+        dispatch(setEditJob({editJobId:_id,company,jobLocation,jobType,position,status}))
     }
         
 
@@ -42,7 +46,7 @@ const Job = ({_id,company, jobType,position,status,jobLocation,createdAt}) => {
                         </div> 
                     </div>
                     <div className="card-actions justify-start mx-4 mb-3 bg-gray-100">
-                       <Link to="/add-job"><button className="btn btn-primary px-2 btn-sm">Edit</button></Link> 
+                       <Link to="/add-job"><button className="btn btn-primary px-2 btn-sm" onClick={handleEditJob}>Edit</button></Link> 
                         <button name={_id} className="btn-outline btn-error border rounded-md px-2 btn-sm" onClick={handleDeleteJob}>Delete</button>
                     </div>
                 </div>

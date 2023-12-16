@@ -3,7 +3,7 @@ import { Form } from 'react-router-dom'
 import { FormInput, SubmitBtn } from '../../components'
 import { useDispatch, useSelector } from 'react-redux';
 import FormDropDown from '../../components/FormDropDown';
-import { createJob, handleChange, handleReset } from '../../features/job/jobSlice';
+import { createJob, editJob, handleChange, handleReset } from '../../features/job/jobSlice';
 import { toast } from 'react-toastify';
 
 
@@ -27,12 +27,17 @@ const AddJob = () => {
         toast.error("please fill all fields")      
         return
     } 
+    if (isEditing){
+      const job = {position, company, jobLocation, jobType, status}
+      dispatch(editJob({editJobId, job}))
+      return
+    }
     dispatch(createJob({position, company, jobLocation, jobType, status}))
   }
 
   useEffect(
     () => {  
-      if (isEditing){
+      if (!isEditing){
       const evntname="jobLocation"
       const evntvalue=location
       dispatch(handleChange({evntname, evntvalue}))  }    

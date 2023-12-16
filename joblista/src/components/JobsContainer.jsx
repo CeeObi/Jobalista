@@ -11,7 +11,7 @@ const JobsContainer = ({jobs}) => {
     if (jobs.length==0){
         return  (
         <div className='flex content-center w-full'>
-            <div className='mx-5 w-full'><h4>No job to display...</h4></div> 
+            <div className='mx-5 w-full'><h4 className='mx-6 font-semibold mt-3 mb-3'>No job to display...</h4></div> 
         </div>
         )
     }
