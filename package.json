@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "moment": "^2.29.4",
     "reactjs-popup": "^2.0.6"
   }
 }

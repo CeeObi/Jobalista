@@ -29,20 +29,25 @@ const allJob = createAsyncThunk("allJob/allJob", async(_, thunkAPI)=>{
 
 
 
-
 const allJobsSlice = createSlice({
     name:"allJob",
     initialState: initialState,
     reducers:{ 
-        handleChange:(state,{payload}) => {
-            const {evntname,evntvalue} = payload
-            state[evntname] = evntvalue
-            state.isEditing=true
-        },
-        handleReset:()=>{
-                const userLocation = getUserFromLocalStorage()?.location||""
-                return {...initialState,jobLocation:userLocation}
-        },
+        // handleChange:(state,{payload}) => {
+        //     const {evntname,evntvalue} = payload
+        //     state[evntname] = evntvalue
+        //     state.isEditing=true
+        // },
+        // handleReset:()=>{
+        //         const userLocation = getUserFromLocalStorage()?.location||""
+        //         return {...initialState,jobLocation:userLocation}
+        // },
+        showLoading:(state)=>{
+            state.isLoading = true
+        },        
+        hideLoading:(state)=>{
+            state.isLoading = false
+        }
     },    
     extraReducers: (builder) => {
         builder
@@ -63,3 +68,4 @@ const allJobsSlice = createSlice({
 
 export default allJobsSlice.reducer;
 export {allJob}
+export const {showLoading,hideLoading} = allJobsSlice.actions
