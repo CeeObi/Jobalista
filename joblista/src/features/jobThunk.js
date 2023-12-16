@@ -7,7 +7,7 @@ import { logoutUser } from "./user/userSlice";
 ///////////////
 const createJobThunk = async (job,thunkAPI) => {
     try {  
-        const response = await customFetch.post("/jobs", job, authHeader(thunkAPI) );    
+        const response = await customFetch.post("/jobs", job)//, authHeader(thunkAPI) );    
         thunkAPI.dispatch(handleReset())  
         return response.data;      
     } 
@@ -23,7 +23,7 @@ const createJobThunk = async (job,thunkAPI) => {
 ///////////////
 const getAllJobThunk = async (url,thunkAPI) => {
     try {  
-        const response = await customFetch.get(url,  authHeader(thunkAPI) );  
+        const response = await customFetch.get(url)//,  authHeader(thunkAPI) );  
         return response.data;      
     } 
     catch (error) {  
@@ -39,7 +39,7 @@ const getAllJobThunk = async (url,thunkAPI) => {
 const deleteJobThunk = async(jobId, thunkAPI)=>{ 
     thunkAPI.dispatch(showLoading())  
     try {  
-        const response = await customFetch.delete(`/jobs/${jobId}`, authHeader(thunkAPI) );    
+        const response = await customFetch.delete(`/jobs/${jobId}`)//, authHeader(thunkAPI) );    
         thunkAPI.dispatch(allJob())  
         return response.data.msg;      
     } 
@@ -56,7 +56,7 @@ const deleteJobThunk = async(jobId, thunkAPI)=>{
 /////////////////
 const editJobThunk = async ({editJobId,job}, thunkAPI) => {
     try {  
-        const response = await customFetch.patch(`/jobs/${editJobId}`, job,  authHeader(thunkAPI) );    
+        const response = await customFetch.patch(`/jobs/${editJobId}`, job)//,  authHeader(thunkAPI) );    
         thunkAPI.dispatch(handleReset())
         return response.data.msg;      
     } 
