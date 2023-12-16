@@ -21,9 +21,9 @@ const createJobThunk = async (job,thunkAPI) => {
 }
 
 ///////////////
-const getAllJobThunk = async (url,thunkAPI) => {
+const getAllJobThunk = async (thunkAPI) => {
     try {  
-        const response = await customFetch.get(url)//,  authHeader(thunkAPI) );  
+        const response = await customFetch.get("/jobs")//,  authHeader(thunkAPI) );  
         return response.data;      
     } 
     catch (error) {  
@@ -70,5 +70,21 @@ const editJobThunk = async ({editJobId,job}, thunkAPI) => {
     }
 }
 
+/////////////////
+const showStatsThunk = async (thunkAPI) => {
+    try {  
+        const response = await customFetch.get("/jobs/stats")//,  authHeader(thunkAPI) );  
+        console.log(response.data)
+        return response.data;      
+    } 
+    catch (error) {  
+        if (error.response.status === 401){
+            // thunkAPI.dispatch(logoutUser())
+            return thunkAPI.rejectWithValue("Unauthorized! Logged out..");
+        }   
+        return rejectWithValue(error.response.data.msg);
+    }
+}
 
-export {createJobThunk, getAllJobThunk, deleteJobThunk, editJobThunk};
+
+export {createJobThunk, getAllJobThunk, deleteJobThunk, editJobThunk, showStatsThunk};

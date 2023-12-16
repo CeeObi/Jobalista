@@ -1,27 +1,17 @@
-import React, { useEffect } from 'react'
-import { FaAlignLeft, FaHome } from "react-icons/fa";
+import React from 'react';
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import Links from "../utils/Links";
-import { useState } from "react";
-import LinkButton from './LinkButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateSelectedId } from '../features/user/userSlice';
 
 
-const getCurrSelId = () => {
-    const currSelctId = localStorage.getItem("currSelId")
-    return currSelctId
-}
-
-
-
-const NavLinks = ({clicked}) => {
+const NavLinks = () => {
     const {currentlySelectedId}= useSelector((state)=>state.userStore)
     const dispatch = useDispatch()
     const handleActive = (e) => {    
         const currId = e.currentTarget.id
         dispatch(updateSelectedId({currId})) 
-        clicked()        
+          
     }
   
   return (<div className="">

@@ -1,20 +1,9 @@
 import { useEffect, useState } from "react";
 import {FormInput, Logo, SubmitBtn} from "../components"
 import { Form,Link, useNavigate } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../features/user/userSlice";
-
-
-const initialState = {
-    name:'Zeke',
-    email:'zeke@gmail.com',
-    password:'zeke589',
-    isMember: true,
-  }
-
-
-
+import { toast } from "react-toastify";
 
 
 const Login = () => {  
@@ -29,6 +18,7 @@ const Login = () => {
 
     const handleSubmit = () => {
         const {email,password} = values
+        console.log(email)
         if (!email || !password){      
             toast.error("please fill all fields")      
             return
@@ -58,6 +48,7 @@ const Login = () => {
         <div className="form-control">
             <SubmitBtn text="Login" isLoading={isLoading}/>            
         </div>
+        <SubmitBtn text="Demo" isLoading={isLoading} type="button" onClick={()=>{console.log("clicked");return dispatch(loginUser({email:"testUser@test.com",password:"secret"}))  }}/>
         <p className="text-center">
             Not a member yet? <Link to="/register" className="ml-2 link link-hover link-primary capitalize"> register</Link>
         </p>

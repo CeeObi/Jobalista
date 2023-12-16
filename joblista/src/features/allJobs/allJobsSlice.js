@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getAllJobThunk } from '../jobThunk';
+import { getAllJobThunk, showStatsThunk } from '../jobThunk';
 import { toast } from 'react-toastify';
 
 const initialFilteredState = {
@@ -24,8 +24,15 @@ const initialState = {
 
 
 const allJob = createAsyncThunk("allJob/allJob", async(_, thunkAPI)=>{    
-    return getAllJobThunk("/jobs", thunkAPI)
+    return getAllJobThunk(thunkAPI)
  })
+
+ 
+ 
+ const showStats = createAsyncThunk("allJob/showStats", async(_, thunkAPI)=>{    
+    return showStatsThunk(thunkAPI)
+ })
+
 
 
 
@@ -50,6 +57,15 @@ const allJobsSlice = createSlice({
         .addCase( allJob.rejected, (state,{payload}) =>{
             state.isLoading = false;
             toast.error(payload)})  
+            ////////////
+        .addCase( showStats.pending, (state) =>{ state.isLoading = true; })
+        .addCase( showStats.fulfilled, (state,{payload}) =>{            
+            state.isLoading = false;
+            state.stats = payload.defaultStats;
+            state.monthlyApplications = payload.monthlyApplications;})
+        .addCase( showStats.rejected, (state,{payload}) =>{
+            state.isLoading = false;
+            toast.error(payload)})  
     },
 })
 
@@ -58,5 +74,5 @@ const allJobsSlice = createSlice({
 
 
 export default allJobsSlice.reducer;
-export {allJob}
+export {allJob, showStats}
 export const {showLoading,hideLoading} = allJobsSlice.actions

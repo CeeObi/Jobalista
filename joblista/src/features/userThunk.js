@@ -15,7 +15,7 @@ const registerUserThunk = async (user,{rejectWithValue}) => {
 
 const loginUserThunk = async (user,thunkAPI) => {
     try {     
-        const response = await customFetch.post("/auth/login", user);
+        const response = await customFetch.post("/auth/login", user);        
         return response.data;      
     } 
     catch (error) {        

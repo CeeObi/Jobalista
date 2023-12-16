@@ -17,6 +17,8 @@ const initialState = {
     status:"pending",
     isEditing: false,
     editJobId: "",
+    isTyping: false,
+
 }
 
 
@@ -29,21 +31,21 @@ const jobSlice = createSlice({
     name:"job",
     initialState: initialState,
     reducers:{ 
-        handleChange:(state,{payload}) => {
+        handleChange:(state,{payload}) => {            
             const {evntname,evntvalue} = payload
-            state[evntname] = evntvalue
+            state[evntname] = evntvalue            
         },
         handleReset:()=>{
                 const userLocation = getUserFromLocalStorage()?.location||""
                 return {...initialState,jobLocation:userLocation}
         },
         setEditJob:(state,{payload}) => {
-            return {...state,isEditing:true,...payload}
+            return {...state,isEditing:true,isTyping:true,...payload}
 
         },
-        // hndleInputChange:(state)=>{
-        //     state.isEditing=true
-        // }
+        hndleInputChange:(state)=>{
+            state.isTyping=true
+        }
     },    
     extraReducers: (builder) => {
         builder
@@ -72,5 +74,5 @@ const jobSlice = createSlice({
    
 
 export default jobSlice.reducer
-export const {handleChange,handleReset,setEditJob } = jobSlice.actions
+export const {handleChange,handleReset,setEditJob, hndleInputChange } = jobSlice.actions
 export {createJob,deleteJob,editJob}
