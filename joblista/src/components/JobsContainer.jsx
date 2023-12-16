@@ -6,14 +6,7 @@ import Job from './Job';
 
 
 
-const JobsContainer = () => {
-    const dispatch = useDispatch();
-    const {jobs,isLoading} = useSelector((store) => store.allJobsStore)
-    if (isLoading){
-        return  <div className='flex content-center w-full'>
-            <span className="loading loading-spinner loading-xs text-primary">sending...</span> 
-        </div>
-        }
+const JobsContainer = ({jobs}) => {
 
     if (jobs.length==0){
         return  (

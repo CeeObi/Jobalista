@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { addUserToLocalStorage, getUserFromLocalStorage, removeUserFromLocalStorage, getIdFromLocalStorage } from '../../utils/localStorage';
 import { createJobThunk,deleteJobThunk } from '../jobThunk';
 import { useSelector } from 'react-redux';
-import { showLoading } from '../allJobs/allJobsSlice';
+
 
 const initialState = {
     isLoading:false,
@@ -25,8 +25,7 @@ const createJob = createAsyncThunk("job/createJob", async(job, thunkAPI)=>{
  })
 
 
- const deleteJob = createAsyncThunk("job/deleteJob", async(jobId, thunkAPI)=>{  
-    thunkAPI.dispatch(showLoading())  
+ const deleteJob = createAsyncThunk("job/deleteJob", async(jobId, thunkAPI)=>{      
     return deleteJobThunk(`/jobs/${jobId}`, thunkAPI)
  })
 
@@ -47,13 +46,6 @@ const jobSlice = createSlice({
                 const userLocation = getUserFromLocalStorage()?.location||""
                 return {...initialState,jobLocation:userLocation}
         },
-        // deleteJob:(state,{payload})=>{
-        //     if (payload){
-
-        //         console.log(payload)
-        //     console.log("deleted")}
-
-        // },
     },    
     extraReducers: (builder) => {
         builder
@@ -64,9 +56,9 @@ const jobSlice = createSlice({
         .addCase( createJob.rejected, (state,{payload}) =>{
             state.isLoading = false;
             toast.error(payload)})  
-        .addCase( deleteJob.pending, (state) =>{ })
-        .addCase( deleteJob.fulfilled, (state) =>{ 
-            toast.success("Job has been deleted")})
+        // .addCase( deleteJob.pending, (state) =>{ })
+        .addCase( deleteJob.fulfilled, (state,{payload}) =>{ 
+            toast.success(payload)})
         .addCase( deleteJob.rejected, (state,{payload}) =>{
             toast.error(payload)})  
     },
