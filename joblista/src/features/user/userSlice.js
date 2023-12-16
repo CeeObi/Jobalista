@@ -12,19 +12,9 @@ const initialState = {
     currentlySelectedId:getIdFromLocalStorage()
 }
 
-const registerUser = createAsyncThunk("user/registerUser", async(user, {rejectWithValue})=>{    
-   return registerUserThunk("/auth/register", user, {rejectWithValue})
-})
-
-
-const loginUser = createAsyncThunk("user/loginUser", async(user,thunkAPI)=>{
-    return loginUserThunk("/auth/login", user, thunkAPI)
-})
-
-const editUserData = createAsyncThunk("user/editUserData",async(user,thunkAPI)=>{
-                                    //url
-    return editUserDataThunk("/auth/updateUser", user, thunkAPI)
-})
+const registerUser = createAsyncThunk("user/registerUser", registerUserThunk)
+const loginUser = createAsyncThunk("user/loginUser", loginUserThunk)
+const editUserData = createAsyncThunk("user/editUserData",editUserDataThunk)
 
 
 const userSlice = createSlice({

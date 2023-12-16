@@ -1,9 +1,9 @@
 import customFetch from "../utils/axios";
 import { logoutUser } from "./user/userSlice";
 
-const registerUserThunk = async (url,user,{rejectWithValue}) => {
+const registerUserThunk = async (user,{rejectWithValue}) => {
     try {  
-        const response = await customFetch.post(url, user);        
+        const response = await customFetch.post("/auth/register", user);        
         return response.data;      
     } 
     catch (error) {     
@@ -12,9 +12,9 @@ const registerUserThunk = async (url,user,{rejectWithValue}) => {
 }
 
 
-const loginUserThunk = async (url,user,thunkAPI) => {
+const loginUserThunk = async (user,thunkAPI) => {
     try {     
-        const response = await customFetch.post(url, user);
+        const response = await customFetch.post("/auth/login", user);
         return response.data;      
     } 
     catch (error) {        
@@ -23,9 +23,9 @@ const loginUserThunk = async (url,user,thunkAPI) => {
 }
 
 
-const editUserDataThunk = async (url,user,thunkAPI) => {
+const editUserDataThunk = async (user,thunkAPI) => {
     try {     
-        const response = await customFetch.patch(url, user, { headers:{
+        const response = await customFetch.patch("/auth/updateUser", user, { headers:{
                 Authorization: `Bearer ${thunkAPI.getState().userStore.user.token}`
         }
     }); 

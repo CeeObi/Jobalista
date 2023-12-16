@@ -1,3 +1,4 @@
+import authHeader from "../utils/authHeader";
 import customFetch from "../utils/axios";
 import { allJob, hideLoading, showLoading } from "./allJobs/allJobsSlice";
 import { handleReset } from "./job/jobSlice";
@@ -6,9 +7,7 @@ import { logoutUser } from "./user/userSlice";
 ///////////////
 const createJobThunk = async (job,thunkAPI) => {
     try {  
-        const response = await customFetch.post("/jobs", job, { headers:{
-            Authorization: `Bearer ${thunkAPI.getState().userStore.user.token}`}
-        } );    
+        const response = await customFetch.post("/jobs", job, authHeader(thunkAPI) );    
         thunkAPI.dispatch(handleReset())  
         return response.data;      
     } 
@@ -24,9 +23,7 @@ const createJobThunk = async (job,thunkAPI) => {
 ///////////////
 const getAllJobThunk = async (url,thunkAPI) => {
     try {  
-        const response = await customFetch.get(url, { headers:{
-            Authorization: `Bearer ${thunkAPI.getState().userStore.user.token}`}
-        } );  
+        const response = await customFetch.get(url,  authHeader(thunkAPI) );  
         return response.data;      
     } 
     catch (error) {  
@@ -42,9 +39,7 @@ const getAllJobThunk = async (url,thunkAPI) => {
 const deleteJobThunk = async(jobId, thunkAPI)=>{ 
     thunkAPI.dispatch(showLoading())  
     try {  
-        const response = await customFetch.delete(`/jobs/${jobId}`, { headers:{
-            Authorization: `Bearer ${thunkAPI.getState().userStore.user.token}`}
-        } );    
+        const response = await customFetch.delete(`/jobs/${jobId}`, authHeader(thunkAPI) );    
         thunkAPI.dispatch(allJob())  
         return response.data.msg;      
     } 
@@ -58,13 +53,10 @@ const deleteJobThunk = async(jobId, thunkAPI)=>{
     }
 }
 
-
 /////////////////
 const editJobThunk = async ({editJobId,job}, thunkAPI) => {
     try {  
-        const response = await customFetch.patch(`/jobs/${editJobId}`, job, { headers:{
-            Authorization: `Bearer ${thunkAPI.getState().userStore.user.token}`}
-        } );    
+        const response = await customFetch.patch(`/jobs/${editJobId}`, job,  authHeader(thunkAPI) );    
         thunkAPI.dispatch(handleReset())
         return response.data.msg;      
     } 
