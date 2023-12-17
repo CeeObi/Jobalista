@@ -79,7 +79,7 @@ const showStatsThunk = async (thunkAPI) => {
     } 
     catch (error) {  
         if (error.response.status === 401){
-            // thunkAPI.dispatch(logoutUser())
+            thunkAPI.dispatch(logoutUser())
             return thunkAPI.rejectWithValue("Unauthorized! Logged out..");
         }   
         return rejectWithValue(error.response.data.msg);
