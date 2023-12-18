@@ -28,22 +28,6 @@ const SearchContainer = () => {
     }
     
     
-    
-    const handleSubmit = (e) => {  
-      // dispatch(handleReset())  
-      e.preventDefault()
-      const payload = {sort:sort,page:page,status:searchStatus,jobType:searchType}
-      console.log(payload)
-      // if (!position || !company || !jobLocation){      
-      //     toast.error("please fill all fields")      
-      //     return
-      // } 
-      
-      // dispatch(createJob({position, company, jobLocation, jobType, status}))
-    }
-  
-
-
 
   return (
     <div className=''>
@@ -51,7 +35,7 @@ const SearchContainer = () => {
           <div className='mt-5'>
               <h2> Search form</h2> 
           </div>
-          <Form onSubmit={handleSubmit}>
+          <Form >
               <div className='mt-5 mb-0 grid grid-flow-row-dense gap-4 grid-cols-3 grid-rows-3 pb-0'>
                   <FormInput type="search" name="search" label="search"  changeVal={handleInputChange} value={search}/>    
                   <FormDropDown  defaultVal={searchStatus}  options={["all",...statusOptions]} label="Status" name="searchStatus" changeVal={handleInputChange}/>

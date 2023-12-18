@@ -47,8 +47,9 @@ const allJobsSlice = createSlice({
             state.isLoading = false
         },
         handleChange:(state,{payload})=>{
-            const {evntname, evntvalue}=payload
-            state[evntname]=evntvalue
+            const {evntname, evntvalue}=payload;
+            state[evntname]=evntvalue;
+            state.page=1;
         },
         handleReset:()=>{
             return initialState
