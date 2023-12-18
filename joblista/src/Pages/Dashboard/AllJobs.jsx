@@ -8,11 +8,11 @@ import { allJob } from '../../features/allJobs/allJobsSlice';
 
 const AllJobs = () => {
   const dispatch = useDispatch()
-  const {isLoading,jobs,totalJobs,page,numberOfPages} = useSelector((store) => store.allJobsStore)
+  const {isLoading,jobs,totalJobs,page,numberOfPages,search,searchStatus,searchType,sort} = useSelector((store) => store.allJobsStore)
 
   useEffect(()=>{
     dispatch(allJob())
-  },[])
+  },[page,search,searchStatus,searchType,sort])
 
   return <>
     {isLoading ?<LoadingContainer/> : <SearchContainer/>}

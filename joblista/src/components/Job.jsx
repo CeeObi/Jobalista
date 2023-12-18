@@ -5,6 +5,7 @@ import JobInfo from './JobInfo';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import { deleteJob, setEditJob } from '../features/job/jobSlice';
+import { updateSelectedId } from '../features/user/userSlice';
 
 
 
@@ -18,6 +19,7 @@ const Job = ({_id,company, jobType,position,status,jobLocation,createdAt}) => {
 
     const handleEditJob = () => {
         dispatch(setEditJob({editJobId:_id,company,jobLocation,jobType,position,status}))
+        dispatch(updateSelectedId({currId:"3"}))
     }
         
 

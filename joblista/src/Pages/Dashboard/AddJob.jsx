@@ -60,8 +60,8 @@ const AddJob = () => {
                   <FormInput type="text" name="position" label="position"  changeVal={handleInputChange} value={position}/>             
                   <FormInput type="text" name="company" label="company"  changeVal={handleInputChange} value={company}/>             
                   <FormInput type="text" name="jobLocation" label="job location"  changeVal={handleInputChange} value={jobLocation}/>             
-                  <FormDropDown options={statusOptions} label="Status" name="status" changeVal={handleInputChange}/>
-                  <FormDropDown  options={jobOptions} label="job type" name="jobType" changeVal={handleInputChange}/>  
+                  <FormDropDown defaultVal={status} options={statusOptions} label="Status" name="status" changeVal={handleInputChange}/>
+                  <FormDropDown  defaultVal={jobType} options={jobOptions} label="job type" name="jobType" changeVal={handleInputChange}/>  
                   <div className='mt-5 mb-0 pb-0 flex items-center justify-between'>
                       <div className='mx-1 w-1/2'>
                           <FormInput  isDisabled={isTyping ? false : true} type="reset" value="Clear" size=" cursor-not-allowed btn btn-primary" handleClicked={handleInputReset}/> 

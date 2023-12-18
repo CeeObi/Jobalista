@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import Links from "../utils/Links";
 import { useDispatch, useSelector } from 'react-redux';
 import { updateSelectedId } from '../features/user/userSlice';
