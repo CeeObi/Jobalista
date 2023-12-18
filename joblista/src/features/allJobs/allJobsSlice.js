@@ -45,7 +45,15 @@ const allJobsSlice = createSlice({
         },        
         hideLoading:(state)=>{
             state.isLoading = false
-        }
+        },
+        handleChange:(state,{payload})=>{
+            const {evntname, evntvalue}=payload
+            state[evntname]=evntvalue
+        },
+        handleReset:()=>{
+            // const userLocation = getUserFromLocalStorage()?.location||""
+            return initialState//,jobLocation:userLocation}
+        },
     },    
     extraReducers: (builder) => {
         builder
@@ -75,4 +83,4 @@ const allJobsSlice = createSlice({
 
 export default allJobsSlice.reducer;
 export {allJob, showStats}
-export const {showLoading,hideLoading} = allJobsSlice.actions
+export const {showLoading,hideLoading,handleChange,handleReset} = allJobsSlice.actions

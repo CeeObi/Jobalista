@@ -8,7 +8,8 @@ const FormDropDown = ({label, options,name, changeVal, defaultVal}) => {
     <label className="label" htmlFor={name}>
         <span className="label-text capitalize">{label}</span>  
     </label>
-    <select defaultValue={defaultVal} onChange={changeVal} name={name} id={name} className="input input-bordered">
+    <select onChange={changeVal} name={name} id={name} className="input input-bordered">
+        {/* {defaultVal&&<option key={defaultVal} value={defaultVal} selected>{defaultVal}</option>} */}
         {
           options.map((option) => <option key={option} value={option} >{option}</option> )
         }        
