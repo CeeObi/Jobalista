@@ -25,9 +25,7 @@ const initialState = {
 
 const allJob = createAsyncThunk("allJob/allJob", async(_, thunkAPI)=>{    
     return getAllJobThunk(thunkAPI)
- })
-
- 
+ }) 
  
  const showStats = createAsyncThunk("allJob/showStats", async(_, thunkAPI)=>{    
     return showStatsThunk(thunkAPI)
@@ -51,12 +49,13 @@ const allJobsSlice = createSlice({
             state[evntname]=evntvalue;
             state.page=1;
         },
-        handleReset:()=>{
-            return initialState
+        handleReset:(state)=>{
+            return {...state,...initialFilteredState}
         },
         handlePage:(state,{payload})=>{
             state.page = parseInt(payload)
         },
+        handleLogoutReset:()=>initialState
     },    
     extraReducers: (builder) => {
         builder
@@ -91,4 +90,4 @@ const allJobsSlice = createSlice({
 
 export default allJobsSlice.reducer;
 export {allJob, showStats}
-export const {showLoading,hideLoading,handleChange,handleReset,handlePage} = allJobsSlice.actions
+export const {showLoading,hideLoading,handleChange,handleReset,handlePage,handleLogoutReset} = allJobsSlice.actions

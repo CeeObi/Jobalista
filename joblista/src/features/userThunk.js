@@ -1,6 +1,9 @@
 import authHeader from "../utils/authHeader";
 import customFetch from "../utils/axios";
+import { handleReset } from "./job/jobSlice";
 import { logoutUser } from "./user/userSlice";
+import { handleLogoutReset } from "./allJobs/allJobsSlice";
+
 
 const registerUserThunk = async (user,{rejectWithValue}) => {
     try {  
@@ -39,5 +42,19 @@ const editUserDataThunk = async (user,thunkAPI) => {
 }
 
 
+const clearStoreOnLogoutThunk = async (message,thunkAPI) => {   
+    try {     
+        thunkAPI.dispatch(logoutUser(message))
+        thunkAPI.dispatch(handleLogoutReset())
+        thunkAPI.dispatch(handleReset())
+        return Promise.resolve();
+    } 
+    catch (error) {  
+        return Promise.reject();
+    }  
+}
 
-export {registerUserThunk, loginUserThunk, editUserDataThunk}
+
+
+
+export {registerUserThunk, loginUserThunk, editUserDataThunk, clearStoreOnLogoutThunk}

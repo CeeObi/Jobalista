@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { addUserToLocalStorage, getUserFromLocalStorage, removeUserFromLocalStorage, getIdFromLocalStorage } from '../../utils/localStorage';
-import { registerUserThunk, loginUserThunk, editUserDataThunk } from '../userThunk';
+import { registerUserThunk, loginUserThunk, editUserDataThunk, clearStoreOnLogoutThunk } from '../userThunk';
 
 
 
@@ -15,6 +15,7 @@ const initialState = {
 const registerUser = createAsyncThunk("user/registerUser", registerUserThunk)
 const loginUser = createAsyncThunk("user/loginUser", loginUserThunk)
 const editUserData = createAsyncThunk("user/editUserData",editUserDataThunk)
+const logoutUserReset = createAsyncThunk("user/logoutUserReset",clearStoreOnLogoutThunk)
 
 
 const userSlice = createSlice({
@@ -71,6 +72,8 @@ const userSlice = createSlice({
         .addCase( editUserData.rejected, (state,{payload}) =>{
             state.isLoading = false;
             toast.error(payload)})
+        .addCase( logoutUserReset.rejected, () =>{
+            toast.error("There was an error")})
     }
 })
 
@@ -80,5 +83,5 @@ const userSlice = createSlice({
 
 
 export default userSlice.reducer;
-export {registerUser,loginUser,editUserData};
+export {registerUser,loginUser,editUserData,logoutUserReset};
 export const {toggleSideBar,logoutUser,updateSelectedId} = userSlice.actions;

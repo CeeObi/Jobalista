@@ -4,7 +4,7 @@ import 'reactjs-popup/dist/index.css';
 import Logo from './Logo';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaAlignLeft, FaCaretDown, FaHome, FaUserCircle, FaTimesCircle } from "react-icons/fa";
-import { logoutUser, toggleSideBar } from '../features/user/userSlice';
+import { logoutUser, logoutUserReset, toggleSideBar } from '../features/user/userSlice';
 import SmallSideBar from './SmallSideBar';
 
 
@@ -25,7 +25,7 @@ const Navbar = ({handleShowBigBar}) => {
         }
     }
     const handleLogout=() => {
-        dispatch(logoutUser("Logged out successfully.."))
+        dispatch(logoutUserReset("Logged out successfully.."))
     }
 
     useEffect(() => {

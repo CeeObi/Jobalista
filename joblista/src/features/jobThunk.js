@@ -78,8 +78,7 @@ const editJobThunk = async ({editJobId,job}, thunkAPI) => {
 /////////////////
 const showStatsThunk = async (thunkAPI) => {
     try {  
-        const response = await customFetch.get("/jobs/stats")//,  authHeader(thunkAPI) );  
-        console.log(response.data)
+        const response = await customFetch.get("/jobs/stats")//,  authHeader(thunkAPI) ); 
         return response.data;      
     } 
     catch (error) {  

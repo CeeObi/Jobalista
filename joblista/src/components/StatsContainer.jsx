@@ -13,7 +13,6 @@ const StatsContainer = () => {
     <div className='mb-5 grid  gap-2 grid-cols-3 px-4 justify-items-center'> 
     {
       Object.entries(stats).map((stat)=>{
-        console.log(stat)
         let statsColor, icon, statsBColor, statsIconBg
         if (stat[0]==="pending"){statsColor="text-yellow-600";statsBColor="border-b-yellow-600"; statsIconBg="bg-yellow-100"; icon=<FaSuitcaseRolling className='text-3xl text-yellow-600' />}
         if (stat[0]==="interview"){statsColor="text-blue-600"; statsBColor="border-b-blue-600"; statsIconBg="bg-blue-100"; icon=<FaCalendarCheck className='text-3xl text-blue-600' />}

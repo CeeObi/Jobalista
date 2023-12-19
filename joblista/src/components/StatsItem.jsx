@@ -1,7 +1,6 @@
 import React from 'react'
 
 const StatsItem = ({icon,statsColor,count,statsTitle, statsBColor, statsIconBg}) => {
-    console.log(statsColor)
   return (
     
         <div className={`card w-full  bg-base-100 shadow-xl mt-3  ${statsBColor} border-b-4`}>
