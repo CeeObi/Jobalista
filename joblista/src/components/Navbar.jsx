@@ -4,8 +4,10 @@ import 'reactjs-popup/dist/index.css';
 import Logo from './Logo';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaAlignLeft, FaCaretDown, FaHome, FaUserCircle, FaTimesCircle } from "react-icons/fa";
-import { logoutUser, logoutUserReset, toggleSideBar } from '../features/user/userSlice';
+import { logoutUserReset, toggleSideBar } from '../features/user/userSlice';
 import SmallSideBar from './SmallSideBar';
+import SubmitBtn from './SubmitBtn';
+import { Link } from 'react-router-dom';
 
 
 
@@ -24,6 +26,7 @@ const Navbar = ({handleShowBigBar}) => {
             handleShowBigBar()
         }
     }
+
     const handleLogout=() => {
         dispatch(logoutUserReset("Logged out successfully.."))
     }
@@ -51,9 +54,9 @@ const Navbar = ({handleShowBigBar}) => {
     
     return (
     <nav className="bg-base-200 flex items-center ">
-        <div className="navbar ">
+        <div className="navbar">
             {/*TITLE */}
-            <div className="navbar-start">  
+            <div className="navbar-start ">  
                 <button onClick={handleToggleSideBar} className='btn btn-sm ms-4 my-7 text-lg p-0'>  <FaAlignLeft className='m-0 p-0'/>   </button>
                 <Popup   position="center" modal open={(window.innerWidth<1024)&&smallShowModal} onClose={() => {setSmallShowModal(false);}}>
                     {close => (
@@ -73,28 +76,32 @@ const Navbar = ({handleShowBigBar}) => {
                     )}
                 </Popup>         
             </div>                    
-            <div className="navbar-center  lg:hidden">
+            <div className="navbar-center  lg:hidden ">
                 <ul className='menu menu-horizontal'>
                     <Logo />
                 </ul>
             </div>
-            <div className="navbar-center hidden lg:flex items-center  "> 
-                <ul className='menu menu-horizontal'>
-                    <h1 className=''>Dashboard</h1>
+            <div className="navbar-center hidden lg:flex items-center   "> 
+                <ul className='menu menu-horizontal '>
+                    <h2 className='font-semibold'>Dashboard</h2>
                 </ul>
             </div>
-            <div className="navbar-end ">
-                <details className='flex dropdown dropdown-end mr-6 bg-primary rounded-md opacity-90'>
-                    <summary tabIndex={0} className='flex items-center'> 
-                        <FaUserCircle className="text-2xl text-white m-2 "/>
-                        <span className='mx-2 text-white' >{user?.name}</span> 
-                        <FaCaretDown className=" text-white me-2 "/>
-                    </summary>
-                    <ul tabIndex={0} className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 flex items-center'  >
-                        <li><button onClick={handleLogout} className='w-100 mx-3 px-10 btn-warning block'> Logout</button></li>
-                    </ul>
-                </details>    
-               </div>
+            <div className="navbar-end  ">
+                {!user ? 
+                    <div className='me-4'><Link to="/login"><SubmitBtn type='button' text="Login / Register" clasName="" /></Link></div> 
+                :
+                    <details className='flex dropdown dropdown-end mr-6 bg-primary rounded-md opacity-90'>
+                        <summary tabIndex={0} className='flex items-center'> 
+                            <FaUserCircle className="text-2xl text-white m-2 "/>
+                            <span className='mx-2 text-white' >{user?.name}</span> 
+                            <FaCaretDown className=" text-white me-2 "/>
+                        </summary>
+                        <ul tabIndex={0} className='menu menu-sm dropdown-content mt-0 z-[1] p-2 shadow-lg bg-white flex items-center'  >
+                            <li><button onClick={handleLogout} className='w-100 mx-1 px-10 btn-primary block text-primary font-semibold'> Logout</button></li>
+                        </ul>
+                    </details> 
+                }  
+            </div>
         </div>
     </nav>
   )

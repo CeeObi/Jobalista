@@ -1,15 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { NavLink } from 'react-router-dom'
-
-// const isActiveButton = () =>{
-//     const actvBut = localStorage.getItem("selctdId")
-//     if(actvBut){
-//         return true
-//     }
-//     return false
-// }
-
 
 
 const LinkButton = ( {id,link,icon,text}) => {

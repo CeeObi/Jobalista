@@ -9,8 +9,7 @@ const ProtectedRoute = ({children}) => {
         if (!user){
             return navigate("/landing")   
         }
-        return children
-        
+        return children        
 }
 
 

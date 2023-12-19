@@ -18,7 +18,7 @@ const SharedLayout = () => {
   return (
   <main className="flex">
       {showBigBar&&
-      <div className="w-1/4 hidden lg:block"> 
+      <div className="w-1/5 hidden lg:block bg-base-200 shadow-sm"> 
           <BigSideBar />
       </div>
       }

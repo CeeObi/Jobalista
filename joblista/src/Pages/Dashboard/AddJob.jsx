@@ -50,7 +50,7 @@ const AddJob = () => {
 
 
   return (
-    <div className=''>
+    <div className='mb-16'>
         <div className='mx-10 mt-5 pt-10 px-10 pb-0 mb-0 shadow bg-white'>
           <div className='mt-5'>
               <h2> {isTyping ?"Edit Job" : "Add Job"}</h2> 

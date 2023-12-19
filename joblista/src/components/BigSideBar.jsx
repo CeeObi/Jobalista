@@ -1,13 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SmallSideBar from './SmallSideBar';
 import Logo from './Logo';
 
 const BigSideBar = () => {
-  const [showModal,setShowModal]=useState(false)  
-  const handleClicked = () => {
-    setShowModal(false);
-  }
-
   
   return (
   <div className=''>
