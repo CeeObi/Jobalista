@@ -1,5 +1,5 @@
 import authHeader from "../utils/authHeader";
-import customFetch from "../utils/axios";
+import customFetch, { checkForUnauthorizedRequest } from "../utils/axios";
 import { handleReset } from "./job/jobSlice";
 import { logoutUser } from "./user/userSlice";
 import { handleLogoutReset } from "./allJobs/allJobsSlice";
@@ -33,12 +33,13 @@ const editUserDataThunk = async (user,thunkAPI) => {
         return response.data;      
     } 
     catch (error) {  
-        if (error.response.status === 401){
-            thunkAPI.dispatch(logoutUser())
-            return thunkAPI.rejectWithValue("Unauthorized! Logged out..");
-        }
-        return thunkAPI.rejectWithValue(error.response.data.msg);
-    }  
+        // if (error.response.status === 401){
+        //     thunkAPI.dispatch(logoutUser())
+        //     return thunkAPI.rejectWithValue("Unauthorized! Logged out..");
+        // }
+        // return thunkAPI.rejectWithValue(error.response.data.msg);
+        return checkForUnauthorizedRequest(error,thunkAPI)
+    } 
 }
 
 

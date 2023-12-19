@@ -1,8 +1,6 @@
-import authHeader from "../utils/authHeader";
-import customFetch from "../utils/axios";
+import customFetch, { checkForUnauthorizedRequest } from "../utils/axios";
 import { allJob, hideLoading, showLoading } from "./allJobs/allJobsSlice";
 import { handleReset } from "./job/jobSlice";
-import { logoutUser } from "./user/userSlice";
 
 ///////////////
 const createJobThunk = async (job,thunkAPI) => {
@@ -12,11 +10,7 @@ const createJobThunk = async (job,thunkAPI) => {
         return response.data;      
     } 
     catch (error) {  
-        if (error.response.status === 401){
-            thunkAPI.dispatch(logoutUser())
-            return thunkAPI.rejectWithValue("Unauthorized! Logged out..");
-        }   
-        return rejectWithValue(error.response.data.msg);
+        return checkForUnauthorizedRequest(error,thunkAPI)        
     }
 }
 
@@ -32,11 +26,7 @@ const getAllJobThunk = async (thunkAPI) => {
         return response.data;      
     } 
     catch (error) {  
-        if (error.response.status === 401){
-            thunkAPI.dispatch(logoutUser())
-            return thunkAPI.rejectWithValue("Unauthorized! Logged out..");
-        }   
-        return rejectWithValue(error.response.data.msg);
+       return checkForUnauthorizedRequest(error,thunkAPI)
     }
 }
 
@@ -50,11 +40,7 @@ const deleteJobThunk = async(jobId, thunkAPI)=>{
     } 
     catch (error) {  
         thunkAPI.dispatch(hideLoading())  
-        if (error.response.status === 401){
-            thunkAPI.dispatch(logoutUser())
-            return thunkAPI.rejectWithValue("Unauthorized! Logged out..");
-        }   
-        return rejectWithValue(error.response.data.msg);
+       return checkForUnauthorizedRequest(error,thunkAPI)
     }
 }
 
@@ -67,11 +53,7 @@ const editJobThunk = async ({editJobId,job}, thunkAPI) => {
     } 
     catch (error) {  
         thunkAPI.dispatch(hideLoading())  
-        if (error.response.status === 401){
-            thunkAPI.dispatch(logoutUser())
-            return thunkAPI.rejectWithValue("Unauthorized! Logged out..");
-        }   
-        return rejectWithValue(error.response.data.msg);
+        return checkForUnauthorizedRequest(error,thunkAPI)
     }
 }
 
@@ -82,11 +64,7 @@ const showStatsThunk = async (thunkAPI) => {
         return response.data;      
     } 
     catch (error) {  
-        if (error.response.status === 401){
-            thunkAPI.dispatch(logoutUser())
-            return thunkAPI.rejectWithValue("Unauthorized! Logged out..");
-        }   
-        return rejectWithValue(error.response.data.msg);
+        return checkForUnauthorizedRequest(error,thunkAPI)
     }
 }
 

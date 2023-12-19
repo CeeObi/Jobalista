@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { Form, useSearchParams } from 'react-router-dom'
+import React, { useMemo, useState } from 'react'
+import { Form } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
 import FormInput from './FormInput';
 import FormDropDown from './FormDropDown';
 import SubmitBtn from './SubmitBtn';
@@ -10,11 +9,10 @@ import { handleChange, handleReset } from '../features/allJobs/allJobsSlice';
 
 
 const SearchContainer = () => {
+  const[localSearch,setLocalSearch] = useState("")
     const dispatch = useDispatch()
-    // const [searchParams,setSearchParams] = useSearchParams()
-    const { jobOptions, statusOptions} = useSelector((store) => store.jobStore);//user from redux initialState);
-    // const {location} = useSelector((store) => store.userStore.user)
-    const {isLoading, search, searchStatus, searchType,sortOptions,sort,page} = useSelector((store) => store.allJobsStore)
+    const { jobOptions, statusOptions} = useSelector((store) => store.jobStore);
+    const {isLoading, searchStatus, searchType,sortOptions,sort,page} = useSelector((store) => store.allJobsStore)
     
     const handleInputChange = (event) => {
       const evntname = event.target.name
@@ -24,10 +22,23 @@ const SearchContainer = () => {
 
     const handleClearValues = (e) => {
       dispatch(handleReset())  
+      setLocalSearch("")
       e.preventDefault()
     }
     
-    
+    const debounce = () =>{
+      let timeoutID;
+      return (e)=>{
+        setLocalSearch(e.target.value)
+        clearTimeout(timeoutID)
+        timeoutID = setTimeout(()=>{
+            dispatch(handleChange({evntname:e.target.name, evntvalue:e.target.value}))
+          },1000
+        )
+      }
+    }
+
+    const optimizedDebounce = useMemo(()=>debounce(),[])
 
   return (
     <div className=''>
@@ -37,7 +48,7 @@ const SearchContainer = () => {
           </div>
           <Form >
               <div className='mt-5 mb-0 grid grid-flow-row-dense gap-4 grid-cols-3 grid-rows-3 pb-0'>
-                  <FormInput type="search" name="search" label="search"  changeVal={handleInputChange} value={search}/>    
+                  <FormInput type="search" name="search" label="search"  changeVal={optimizedDebounce} value={localSearch}/>    
                   <FormDropDown  defaultVal={searchStatus}  options={["all",...statusOptions]} label="Status" name="searchStatus" changeVal={handleInputChange}/>
                   <FormDropDown defaultVal={searchType} options={["all",... jobOptions]} label="Type" name="searchType" changeVal={handleInputChange}/>         
                   <FormDropDown defaultVal={sort} options={sortOptions} label="sort" name="sort" changeVal={handleInputChange}/> 

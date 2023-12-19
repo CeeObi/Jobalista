@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import { getUserFromLocalStorage } from './localStorage';
+import { logoutUserReset } from '../features/user/userSlice';
 
 
 const customFetch = axios.create({
@@ -21,6 +22,18 @@ customFetch.interceptors.request.use(
 
 
 
+const checkForUnauthorizedRequest = (error,thunkAPI) =>{
+    if (error.response.status === 401){
+        thunkAPI.dispatch(logoutUserReset())
+        return thunkAPI.rejectWithValue("Unauthorized! Logged out..");
+    }
+    return thunkAPI.rejectWithValue(error.response.data.msg);
+
+}
+
+
+
 
 
 export default customFetch;
+export {checkForUnauthorizedRequest};
