@@ -10,9 +10,9 @@ import {registerUser } from "../features/user/userSlice";
 
 
 const initialState = {
-  name:'Zeke',
-  email:'zeke@gmail.com',
-  password:'zeke589',
+  name:'',
+  email:'',
+  password:'',
   isMember: true,
 }
 

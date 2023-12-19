@@ -87,8 +87,10 @@ const Navbar = ({handleShowBigBar}) => {
                 </ul>
             </div>
             <div className="navbar-end  ">
-                {!user ? 
-                    <div className='me-4'><Link to="/login"><SubmitBtn type='button' text="Login / Register" clasName="" /></Link></div> 
+            
+                {!user ? <>
+                    <div className='me-4' ><Link to="/register"><SubmitBtn type='button' text="signup" clasName="hodle" /></Link></div> 
+                    <div className='me-4'><Link to="/login"><SubmitBtn type='button' text="Login" clasName="" /></Link></div> </>
                 :
                     <details className='flex dropdown dropdown-end mr-6 bg-primary rounded-md opacity-90'>
                         <summary tabIndex={0} className='flex items-center'> 
