@@ -56,8 +56,16 @@ const Navbar = ({handleShowBigBar}) => {
     <nav className="bg-base-200 flex items-center ">
         <div className="navbar">
             {/*TITLE */}
-            <div className="navbar-start ">  
+            <div className="navbar-start "> 
+                {!user ?   
+                <div className="navbar-center ">
+                        <ul className='menu menu-horizontal'>
+                            <Logo />
+                        </ul>
+                </div>
+                :
                 <button onClick={handleToggleSideBar} className='btn btn-sm ms-4 my-7 text-lg p-0'>  <FaAlignLeft className='m-0 p-0'/>   </button>
+                }
                 <Popup   position="center" modal open={(window.innerWidth<1024)&&smallShowModal} onClose={() => {setSmallShowModal(false);}}>
                     {close => (
                     <div className='' style={{ height: '80vh', overflow: 'scroll' }} >
@@ -81,11 +89,12 @@ const Navbar = ({handleShowBigBar}) => {
                     <Logo />
                 </ul>
             </div>
-            <div className="navbar-center hidden lg:flex items-center   "> 
-                <ul className='menu menu-horizontal '>
-                    <h2 className='font-semibold'>Dashboard</h2>
-                </ul>
-            </div>
+            {user &&<div className="navbar-center hidden lg:flex items-center   "> 
+                        <ul className='menu menu-horizontal '>
+                            <h2 className='font-semibold'>Dashboard</h2>
+                        </ul>
+                    </div>
+            }
             <div className="navbar-end  ">
             
                 {!user ? <>
