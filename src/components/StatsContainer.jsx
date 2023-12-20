@@ -10,7 +10,7 @@ const StatsContainer = () => {
     
     
   return (
-    <div className='mb-5 grid  gap-2 grid-cols-3 px-4 justify-items-center'> 
+    <div className='mb-5 grid  gap-2 grid-cols-1 sm:grid-cols-3 px-10 sm:px-5 justify-items-center'> 
     {
       Object.entries(stats).map((stat)=>{
         let statsColor, icon, statsBColor, statsIconBg

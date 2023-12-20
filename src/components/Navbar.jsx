@@ -84,11 +84,11 @@ const Navbar = ({handleShowBigBar}) => {
                     )}
                 </Popup>         
             </div>                    
-            <div className="navbar-center  lg:hidden ">
+            {user && <div className="navbar-center  lg:hidden ">
                 <ul className='menu menu-horizontal'>
                     <Logo />
                 </ul>
-            </div>
+            </div>}
             {user &&<div className="navbar-center hidden lg:flex items-center   "> 
                         <ul className='menu menu-horizontal '>
                             <h2 className='font-semibold'>Dashboard</h2>

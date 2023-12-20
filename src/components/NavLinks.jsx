@@ -5,12 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateSelectedId } from '../features/user/userSlice';
 
 
-const NavLinks = () => {
+const NavLinks = ({clicked}) => {
     const {currentlySelectedId}= useSelector((state)=>state.userStore)
     const dispatch = useDispatch()
     const handleActive = (e) => {    
         const currId = e.currentTarget.id
         dispatch(updateSelectedId({currId})) 
+        clicked()
           
     }
   

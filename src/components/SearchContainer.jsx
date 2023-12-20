@@ -47,7 +47,7 @@ const SearchContainer = () => {
               <h2> Search form</h2> 
           </div>
           <Form >
-              <div className='mt-5 mb-0 grid grid-flow-row-dense gap-4 grid-cols-3 grid-rows-3 pb-0'>
+              <div className='mt-5 mb-0 grid grid-flow-row-dense gap-4 sm:grid-cols-3 grid-rows-3 pb-10 sm:pb-0 grid-cols-1'>
                   <FormInput type="search" name="search" label="search"  changeVal={optimizedDebounce} value={localSearch}/>    
                   <FormDropDown  defaultVal={searchStatus}  options={["all",...statusOptions]} label="Status" name="searchStatus" changeVal={handleInputChange}/>
                   <FormDropDown defaultVal={searchType} options={["all",... jobOptions]} label="Type" name="searchType" changeVal={handleInputChange}/>         

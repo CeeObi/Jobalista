@@ -1,5 +1,4 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import Job from './Job';
 import PaginationBtnContainer from './PaginationBtnContainer';
 
@@ -18,7 +17,7 @@ const JobsContainer = ({jobs,totalJobs,page,numOfPages}) => {
     }
 
     return (<>
-        <div className='mb-5 grid  gap-4 grid-cols-2 px-5 justify-items-center'> 
+        <div className='mb-5 grid  gap-8 lg:grid-cols-2 2xl:grid-cols-3 grid-cols-1 px-14 sm:px-20 md:px-32 lg:px-8 justify-items-center'> 
                {jobs.map(
                 (eachJob) =><Job key={eachJob._id} {...eachJob}/>
                )}

@@ -56,17 +56,17 @@ const AddJob = () => {
               <h2> {isTyping ?"Edit Job" : "Add Job"}</h2> 
           </div>
           <Form onSubmit={handleSubmit}>
-              <div className='mt-5 mb-0 grid grid-flow-row-dense gap-4 grid-cols-3 grid-rows-3 pb-0'>
+              <div className='mt-5 mb-0 grid grid-flow-row-dense gap-4 grid-cols-1 sm:grid-cols-3 grid-rows-3 pb-10 sm:pb-0'>
                   <FormInput type="text" name="position" label="position"  changeVal={handleInputChange} value={position}/>             
                   <FormInput type="text" name="company" label="company"  changeVal={handleInputChange} value={company}/>             
                   <FormInput type="text" name="jobLocation" label="job location"  changeVal={handleInputChange} value={jobLocation}/>             
                   <FormDropDown defaultVal={status} options={statusOptions} label="Status" name="status" changeVal={handleInputChange}/>
                   <FormDropDown  defaultVal={jobType} options={jobOptions} label="job type" name="jobType" changeVal={handleInputChange}/>  
                   <div className='mt-5 mb-0 pb-0 flex items-center justify-between'>
-                      <div className='mx-1 w-1/2'>
+                      <div className='mx-1 w-1/2 pb-0 mb-0'>
                           <FormInput  isDisabled={isTyping ? false : true} type="reset" value="Clear" size=" cursor-not-allowed btn btn-primary" handleClicked={handleInputReset}/> 
                       </div>                      
-                      <div className='mt-4 mx-1 w-1/2'>
+                      <div className='mt-4 mx-1 w-1/2 pb-0 mb-0'>
                           <SubmitBtn text="Submit" isLoading={isLoading}/>
                       </div>                      
                   </div>  

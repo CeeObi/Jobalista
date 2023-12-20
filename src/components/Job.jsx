@@ -37,7 +37,7 @@ const Job = ({_id,company, jobType,position,status,jobLocation,createdAt}) => {
             </div>
         </div>
         <hr className="h-px  bg-gray-200 border-0 dark:bg-gray-700 mt-0 pt-0"></hr>
-        <div className="card-body grid  grid-cols-2 bg-gray-100">     
+        <div className="card-body grid  grid-cols-1 sm:grid-cols-2 bg-gray-100">     
             <div>                            
                 <JobInfo icon={<FaLocationArrow className='text-gray-500'/>} jobInfo={jobLocation}/>
                 <JobInfo icon={<FaBriefcase className='text-gray-500'/>} jobInfo={jobType} clsNm='mt-3'/>                            

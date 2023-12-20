@@ -32,7 +32,7 @@ const PaginationBtnContainer = ({page, totalJobs, numOfPages}) => {
     }
     
   return (
-    <div className='flex justify-end mx-5 mt-10 '>
+    <div className='flex justify-center md:justify-end mx-5 mt-10 '>
             <button className='btn-outline border btn-primary btn-sm rounded-sm' onClick={handlePrevPage}> 
                 <div className="mx-auto flex justify-center my-0 py-2">
                     <div className=" my-0 py-0">
@@ -43,7 +43,8 @@ const PaginationBtnContainer = ({page, totalJobs, numOfPages}) => {
             </button>
             {
                 pageNums.map((pageNum) => { 
-                return <button key={pageNum} id={pageNum} name={pageNum} className={`btn-outline ${pageNum===page && "btn-active"} border btn-primary btn-sm rounded-sm`} onClick={handleClick}>{pageNum}</button>} )
+
+                return <button key={pageNum} id={pageNum} name={pageNum} className={`btn-outline ${pageNum===page && "btn-active"} ${pageNum!=page && pageNum!=page+1 && pageNum!=page-1 && "hidden md:block"} border btn-primary btn-sm rounded-sm`} onClick={handleClick}>{pageNum}</button>} )
             }
             <button className=' btn-outline border btn-primary btn-sm rounded-sm' onClick={handleNextPage} >
                 <div className="mx-auto flex justify-center my-0 py-2">
