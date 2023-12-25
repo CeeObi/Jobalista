@@ -45,7 +45,7 @@ const Profile = () => {
               <h2>Profile</h2> 
           </div>
           <Form onSubmit={handleSubmit}>
-              <div className='mt-5 mb-0 grid grid-flow-row-dense gap-4 grid-cols-3 grid-rows-3 pb-0'>
+              <div className='mt-5 mb-0 grid grid-flow-row-dense gap-4 grid-cols-1 sm:grid-cols-3 grid-rows-3 pb-0'>
                   <FormInput type="text" name="name" label="first name"  changeVal={handleChange} value={userData.name}/>             
                   <FormInput type="text" name="lastName" label="last name"  changeVal={handleChange} value={userData.lastName}/>             
                   <FormInput type="email" name="email" label="email"  changeVal={handleChange} value={userData.email}/>             
