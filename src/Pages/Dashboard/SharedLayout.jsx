@@ -9,24 +9,13 @@ const getBigBarStatus = () => {
 }
 
 const SharedLayout = () => {
-    const [showBigBar, setShowBigBar] = useState(getBigBarStatus())
-    const [showLogo, setShowLogo] = useState(getBigBarStatus(false))
+    const [showBigBar, setShowBigBar] = useState(getBigBarStatus())    
     const handleShowBigBar = () =>{
         const bigBarStat= !showBigBar
         sessionStorage.setItem("showBigBar",bigBarStat)  
         setShowBigBar(bigBarStat)
   }
-  useEffect(()=>{setShowLogo(!showLogo);
-    const handleResize = () => {
-  if (window.innerWidth<1024){ 
-    setShowLogo(false)                
-}   
-    if (window.innerWidth>=1024 && !showBigBar){ 
-        setShowLogo(true)                
-    }
-}
-window.addEventListener('resize', handleResize)
-},[showBigBar])
+ 
 
   return (
   <main className="flex">
@@ -35,8 +24,7 @@ window.addEventListener('resize', handleResize)
           <BigSideBar />
       </div>
       }
-      <div className="w-full">
-      {showLogo&&<div className='flex w-full justify-center my-2'><Logo/></div>}
+      <div className="w-full">      
           <Navbar handleShowBigBar={handleShowBigBar} />      
           <Outlet /> 
       </div>
