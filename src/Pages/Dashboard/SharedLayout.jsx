@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom';
-import { BigSideBar, Navbar } from '../../components';
+import { BigSideBar, Logo, Navbar } from '../../components';
+import { useEffect } from 'react';
 
 const getBigBarStatus = () => {
     const bgbStats = sessionStorage.getItem("showBigBar")
@@ -9,11 +10,23 @@ const getBigBarStatus = () => {
 
 const SharedLayout = () => {
     const [showBigBar, setShowBigBar] = useState(getBigBarStatus())
+    const [showLogo, setShowLogo] = useState(getBigBarStatus(false))
     const handleShowBigBar = () =>{
         const bigBarStat= !showBigBar
         sessionStorage.setItem("showBigBar",bigBarStat)  
         setShowBigBar(bigBarStat)
   }
+  useEffect(()=>{setShowLogo(!showLogo);
+    const handleResize = () => {
+  if (window.innerWidth<1024){ 
+    setShowLogo(false)                
+}   
+    if (window.innerWidth>=1024 && !showBigBar){ 
+        setShowLogo(true)                
+    }
+}
+window.addEventListener('resize', handleResize)
+},[showBigBar])
 
   return (
   <main className="flex">
@@ -23,6 +36,7 @@ const SharedLayout = () => {
       </div>
       }
       <div className="w-full">
+      {showLogo&&<div className='flex w-full justify-center my-2'><Logo/></div>}
           <Navbar handleShowBigBar={handleShowBigBar} />      
           <Outlet /> 
       </div>

@@ -52,11 +52,16 @@ const Navbar = ({handleShowBigBar}) => {
       }
     
     
-    return (
-    <nav className="bg-base-200 flex items-center ">
+    return (<div className=''>
+        {user && <div className="navbar-center flex lg:hidden mx-auto ">
+                <ul className='menu menu-horizontal mx-auto'>
+                    <Logo />
+                </ul>
+            </div>}    
+    <nav className="bg-base-200 flex items-center ">    
         <div className="navbar">
             {/*TITLE */}
-            <div className="navbar-start "> 
+            <div className="navbar-start flex align-middle "> 
                 {!user ?   
                 <div className="navbar-center ">
                         <ul className='menu menu-horizontal'>
@@ -66,9 +71,9 @@ const Navbar = ({handleShowBigBar}) => {
                 :
                 <button onClick={handleToggleSideBar} className='btn btn-sm ms-4 my-7 text-lg p-0'>  <FaAlignLeft className='m-0 p-0'/>   </button>
                 }
-                <Popup   position="center" modal open={(window.innerWidth<1024)&&smallShowModal} onClose={() => {setSmallShowModal(false);}}>
+                <Popup width="100%"  position="center" modal open={(window.innerWidth<1024)&&smallShowModal} onClose={() => {setSmallShowModal(false);}}>
                     {close => (
-                    <div className='' style={{ height: '80vh', overflow: 'scroll' }} >
+                    <div className='modl' style={{ height: '80vh', overflow: 'scroll',  }} >
                         <div className=" button px-0 m-1 text-2xl text-primary" onClick={() => {
                             sessionStorage.setItem("showModalstats",false);
                             setSmallShowModal(false);close(); }}>
@@ -78,17 +83,13 @@ const Navbar = ({handleShowBigBar}) => {
                             <div className='mx-auto flex justify-center my-10'>
                                 <Logo/>
                             </div>
-                        <SmallSideBar clicked={handleClicked} barClass='lg:hidden'/>
+                            <SmallSideBar clicked={handleClicked} barClass='lg:hidden'/>
                         </div>
                     </div>
                     )}
                 </Popup>         
             </div>                    
-            {user && <div className="navbar-center  lg:hidden ">
-                <ul className='menu menu-horizontal'>
-                    <Logo />
-                </ul>
-            </div>}
+            
             {user &&<div className="navbar-center hidden lg:flex items-center   "> 
                         <ul className='menu menu-horizontal '>
                             <h2 className='font-semibold'>Dashboard</h2>
@@ -98,10 +99,10 @@ const Navbar = ({handleShowBigBar}) => {
             <div className="navbar-end  ">
             
                 {!user ? <>
-                    <div className='me-4' ><Link to="/register"><SubmitBtn type='button' text="signup" clasName="hodle" /></Link></div> 
-                    <div className='me-4'><Link to="/login"><SubmitBtn type='button' text="Login" clasName="" /></Link></div> </>
+                    <div className='me-4 ' ><Link to="/register"><SubmitBtn type='button' text="signup" clasName="hodle btn-sm" /></Link></div> 
+                    <div className='me-4'><Link to="/login"><SubmitBtn type='button' text="Login" clasName=" btn-sm" /></Link></div> </>
                 :
-                    <details className='flex dropdown dropdown-end mr-6 bg-primary rounded-md opacity-90'>
+                    <details className='flex dropdown dropdown-end mr-4 bg-primary rounded-md opacity-90'>
                         <summary tabIndex={0} className='flex items-center'> 
                             <FaUserCircle className="text-2xl text-white m-2 "/>
                             <span className='mx-2 text-white' >{user?.name}</span> 
@@ -115,6 +116,7 @@ const Navbar = ({handleShowBigBar}) => {
             </div>
         </div>
     </nav>
+    </div>
   )
 }
 
