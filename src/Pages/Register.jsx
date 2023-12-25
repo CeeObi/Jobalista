@@ -51,7 +51,7 @@ const Register = () => {
   
   return (
     <section className="h-screen grid place-items-center">
-        <Form onSubmit={handleSubmit} className="card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-6 border-t-4 border-blue-400">
+        <Form onSubmit={handleSubmit} className="card w-80 px-4 pt-4 pb-8 bg-base-100 shadow-lg flex flex-col gap-y-6 border-t-4 border-blue-400">
             <div className="self-center"><Logo /></div>
             <h4 className="text-center font-bold text-3xl">Register</h4>
             <div>            

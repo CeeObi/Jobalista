@@ -38,7 +38,7 @@ const Login = () => {
 
 
     return <section className="h-screen grid place-items-center">
-    <Form onSubmit={handleSubmit} className="card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-6 border-t-4 border-blue-400">
+    <Form onSubmit={handleSubmit} className="card w-80 px-4 pt-4 pb-8 bg-base-100 shadow-lg flex flex-col gap-y-6 border-t-4 border-blue-400">
         <div className="self-center"><Logo /></div>
         <h4 className="text-center font-bold text-3xl">Login</h4>
         <div>
@@ -49,7 +49,7 @@ const Login = () => {
             <SubmitBtn text="Login" isLoading={isLoading}/>            
         </div>
         <SubmitBtn clasName="hodle" text="Demo" isLoading={isLoading} type="button" onClick={()=>{console.log("clicked");return dispatch(loginUser({email:"testUser@test.com",password:"secret"}))  }}/>
-        <p className="text-center">
+        <p className="text-center ">
             Not a member yet? <Link to="/register" className="ml-2 link link-hover link-primary capitalize"> register</Link>
         </p>
     </Form>
