@@ -50,6 +50,7 @@ const userSlice = createSlice({
                 state.isLoading = true;
             })
             .addCase(registerUser.fulfilled, (state, { payload }) => {
+                // console.log(payload);
                 const { user } = payload;
                 state.user = user;
                 addUserToLocalStorage(user);

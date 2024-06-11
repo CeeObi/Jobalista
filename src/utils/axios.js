@@ -3,10 +3,11 @@ import axios from "axios";
 import { getUserFromLocalStorage } from "./localStorage";
 import { logoutUserReset } from "../features/user/userSlice";
 
-const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+// const proxyUrl = "https://cors-anywhere.herokuapp.com/";
 
 const customFetch = axios.create({
-    baseURL: proxyUrl + "https://jobify-prod.herokuapp.com/api/v1/toolkit",
+    // baseURL:  "https://jobify-prod.herokuapp.com/api/v1/toolkit",
+    baseURL: "http://127.0.0.1:5000",
 });
 
 customFetch.interceptors.request.use((config) => {
