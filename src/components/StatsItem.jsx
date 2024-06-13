@@ -5,7 +5,7 @@ const StatsItem = ({ icon, statsColor, count, statsTitle, statsBColor, statsIcon
         <div className={`card w-full  bg-base-100 shadow-xl mt-3  ${statsBColor} border-b-4`}>
             <div className="card-title grid gap-2 grid-cols-2 px-5">
                 <h6 className={`mx-2 mt-0 pt-0 card-title text-left text-4xl py-0 font-bold capitalize ${statsColor}`}>
-                    {count}tbc...
+                    {count} Job{count != 1 && "s"}
                 </h6>
                 <div className="w-full flex justify-end px-4 py-6 ">
                     <div className={`${statsIconBg} p-3`}>{icon}</div>
