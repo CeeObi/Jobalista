@@ -42,6 +42,7 @@ const AddJob = () => {
         }
         if (isEditing) {
             const job = { position, company, jobLocation, jobType, status };
+            console.log(editJobId);
             dispatch(editJob({ editJobId, job }));
             return;
         }
