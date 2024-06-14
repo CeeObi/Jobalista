@@ -15,6 +15,8 @@ const initialState = {
     totalJobs: 0,
     numberOfPages: 1,
     page: 1,
+    has_next: false,
+    has_prev: false,
     stats: {},
     monthlyApplications: [],
     ...initialFilteredState,
@@ -57,11 +59,13 @@ const allJobsSlice = createSlice({
                 state.isLoading = true;
             })
             .addCase(allJob.fulfilled, (state, { payload }) => {
-                const { jobs, numOfPages, totalJobs } = payload;
+                const { jobs, numOfPages, totalJobs, has_next, has_prev } = payload;
                 state.isLoading = false;
                 state.jobs = jobs;
                 state.totalJobs = totalJobs;
                 state.numberOfPages = numOfPages;
+                state.has_next = has_next;
+                state.has_prev = has_prev;
             })
             .addCase(allJob.rejected, (state, { payload }) => {
                 state.isLoading = false;

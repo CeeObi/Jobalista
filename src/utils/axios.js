@@ -7,7 +7,7 @@ import { logoutUserReset } from "../features/user/userSlice";
 
 const customFetch = axios.create({
     // baseURL:  "https://jobify-prod.herokuapp.com/api/v1/toolkit",
-    baseURL: "http://127.0.0.1:5000",
+    baseURL: import.meta.env.VITE_API_URL, //"http://127.0.0.1:5000",
 });
 
 customFetch.interceptors.request.use((config) => {

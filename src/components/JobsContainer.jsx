@@ -2,7 +2,7 @@ import React from "react";
 import Job from "./Job";
 import PaginationBtnContainer from "./PaginationBtnContainer";
 
-const JobsContainer = ({ jobs, totalJobs, page, numOfPages }) => {
+const JobsContainer = ({ jobs, totalJobs, page, numOfPages, has_next, has_prev }) => {
     if (totalJobs == 0) {
         return (
             <div className="flex content-center w-full">
@@ -25,7 +25,15 @@ const JobsContainer = ({ jobs, totalJobs, page, numOfPages }) => {
                 ))}
             </div>
             <div className=" px-5 my-5">
-                {numOfPages > 1 && <PaginationBtnContainer page={page} totalJobs={totalJobs} numOfPages={numOfPages} />}
+                {numOfPages > 1 && (
+                    <PaginationBtnContainer
+                        page={page}
+                        totalJobs={totalJobs}
+                        numOfPages={numOfPages}
+                        has_next={has_next}
+                        has_prev={has_prev}
+                    />
+                )}
             </div>
         </>
     );

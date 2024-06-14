@@ -5,9 +5,19 @@ import { allJob } from "../../features/allJobs/allJobsSlice";
 
 const AllJobs = () => {
     const dispatch = useDispatch();
-    const { isLoading, jobs, totalJobs, page, numberOfPages, search, searchStatus, searchType, sort } = useSelector(
-        (store) => store.allJobsStore
-    );
+    const {
+        isLoading,
+        jobs,
+        totalJobs,
+        page,
+        numberOfPages,
+        search,
+        searchStatus,
+        searchType,
+        sort,
+        has_next,
+        has_prev,
+    } = useSelector((store) => store.allJobsStore);
 
     useEffect(() => {
         dispatch(allJob());
@@ -23,7 +33,14 @@ const AllJobs = () => {
                             {totalJobs} Job{totalJobs !== 1 && "s"} Found
                         </h4>
                     )}
-                    <JobsContainer jobs={jobs} page={page} totalJobs={totalJobs} numOfPages={numberOfPages} />
+                    <JobsContainer
+                        jobs={jobs}
+                        page={page}
+                        totalJobs={totalJobs}
+                        numOfPages={numberOfPages}
+                        has_next={has_next}
+                        has_prev={has_prev}
+                    />
                 </div>
             </div>
         </>
