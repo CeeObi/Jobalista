@@ -63,7 +63,7 @@ const Login = () => {
                     type="button"
                     onClick={() => {
                         setIsDemo(true);
-                        return dispatch(loginUser({ email: "cee@gmail.com", password: "password" }));
+                        return dispatch(loginUser({ email: "ceeo@gmail.com", password: "password" }));
                     }}
                 />
                 <p className="text-center ">
