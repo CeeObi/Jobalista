@@ -9,6 +9,7 @@ const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [values, setValues] = useState(""); //initialState);
+    const [isDemo, setIsDemo] = useState(false);
     const { user, isLoading } = useSelector((state) => state.userStore);
 
     const handleChange = (event) => {
@@ -53,16 +54,16 @@ const Login = () => {
                     />
                 </div>
                 <div className="form-control">
-                    <SubmitBtn text="Login" isLoading={isLoading} />
+                    <SubmitBtn text="Login" isLoading={!isDemo && isLoading} />
                 </div>
                 <SubmitBtn
                     clasName="hodle"
                     text="Demo"
-                    isLoading={isLoading}
+                    isLoading={isDemo && isLoading}
                     type="button"
                     onClick={() => {
-                        console.log("clicked");
-                        return dispatch(loginUser({ email: "testUser@test.com", password: "secret" }));
+                        setIsDemo(true);
+                        return dispatch(loginUser({ email: "cee@gmail.com", password: "passw0rd" }));
                     }}
                 />
                 <p className="text-center ">
