@@ -67,7 +67,10 @@ const userSlice = createSlice({
             .addCase(loginUser.fulfilled, (state, { payload }) => {
                 const { user } = payload;
                 state.user = user;
-                addUserToLocalStorage(user);
+                if (user) {
+                    addUserToLocalStorage(user);
+                }
+
                 state.isLoading = false;
                 state.currentlySelectedId = "1";
                 toast.success(`Welcome back, ${user.name}`);

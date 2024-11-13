@@ -17,6 +17,10 @@ const registerUserThunk = async (user, { rejectWithValue }) => {
 const loginUserThunk = async (user, thunkAPI) => {
     try {
         const response = await customFetch.post("/auth/login", user); //user is the body containing the email and password body passed
+        //validate response is not error
+        if (response.data.error) {
+            return thunkAPI.rejectWithValue(response.data.error[0].msg);
+        }
         return response.data;
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response.data.msg);
